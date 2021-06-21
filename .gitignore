@@ -1,6 +1,6 @@
 *#*
-src/**/*.cljs
-test/**/*.cljs
+#src/**/*.cljs
+#test/**/*.cljs
 node_modules
 public/js
 out
