@@ -1,0 +1,10 @@
+* About
+
+[[https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml][https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml/badge.svg]]
+
+This is the front-end for the [[https://github.com/jakub-stastny/rpm.meta][rental property management system]].
+
+* Next steps
+
+#- Read the [[./src/main.org][design decisions]] chapter.
+#- If you're new to Clojure and you're using Emacs, you might like [[./env/README.org][writing Clojure programs in Emacs]] chapter.
