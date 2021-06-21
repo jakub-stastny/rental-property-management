@@ -1,0 +1,64 @@
+* About
+
+Literate DevOps script to set up the current project.
+
+* Installation
+** Emacs packages
+
+We want to keep environment-specific configuration out of our =~/.emacs=.
+
+That's what =.env/emacs.el= is for and here we install all the packages specific to the project's environment.
+
+#+BEGIN_SRC elisp :results silent
+  (dolist (package '(clojure-mode cider))
+    (unless (package-installed-p package)
+      (message "~ Installing %s." package)
+      (package-install package)))
+#+END_SRC
+
+** Emacs per-project configuration
+
+- [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el][~/zsh/environments/elisp/literate-programming.el]]
+
+#+BEGIN_SRC elisp :tangle emacs.el
+  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
+
+  (load "literate-programming")
+  (load-theme 'tsdh-light)
+#+END_SRC
+
+** ZSH per-project configuration
+
+#+BEGIN_SRC shell :tangle zsh.zsh
+  load ~/.zsh/environments/helpers.zsh && save-function-list
+  load ~/.zsh/environments/basic.zsh
+  load ~/.zsh/environments/emacs.zsh
+
+  try-load ~/blog.meta/inherit/env/zsh.zsh
+
+  start-emacs-session
+  rename-first-tab
+
+  # Custom functions & aliases.
+
+  # We compile on save, but for the first-time compilation,
+  # we want to be able to do it from the shell, rather than
+  # having to go and save manually each file from Emacs.
+  tangle() {
+    cd src
+    echo "(dolist (file argv) (message file) (find-file file) (org-babel-tangle))" > compile.el
+    emacs --script compile.el *.org
+    rm compile.el
+    cd -
+  }
+
+  run() {
+    clj -M -m rpm.main
+  }
+
+  t() {
+    clj -X:test
+  }
+
+  report-custom-functions
+#+END_SRC
