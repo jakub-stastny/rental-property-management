@@ -41,3 +41,7 @@ All the other components are defined in the =app.rpm.components= namespace.
     [:<>
      [header][app][footer]])
 #+END_SRC
+
+* Keep reading
+
+- Chapter on [[./components.org][components]].
