@@ -1,5 +1,4 @@
-: * Layout
-
+* Layout
 ** Header
 
 #+BEGIN_SRC clojure :tangle rpm/components/header.cljs :mkdirp yes
