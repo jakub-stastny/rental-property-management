@@ -1,5 +1,5 @@
 * Layout
-** Header
+** Page header
 
 #+BEGIN_SRC clojure :tangle rpm/components/header.cljs :mkdirp yes
   (ns app.rpm.components.header "The main header.")
@@ -40,7 +40,7 @@
     [:main {:style style} [router-app]]))
 #+END_SRC
 
-** Footer
+** Page footer
 
 #+BEGIN_SRC clojure :tangle rpm/components/footer.cljs :mkdirp yes
   (ns app.rpm.components.footer "The main footer.")
