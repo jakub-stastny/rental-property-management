@@ -21,8 +21,6 @@
 
 #+BEGIN_SRC clojure :tangle rpm/components/app.cljs :mkdirp yes
   (ns app.rpm.components.app "The main Reagent app."
-    (:require [app.rpm.components.header :refer [header]])
-    (:require [app.rpm.components.footer :refer [footer]])
     (:require [app.rpm.components.login :refer [log-in-form]]))
 
   (defn router-app
