@@ -62,7 +62,7 @@
 
 #+BEGIN_SRC clojure :tangle rpm/components/login.cljs :mkdirp yes
   (ns app.rpm.components.login "The login component."
-    (:require [app.rpm.helpers.form :refer [text-field email-field]]))
+    (:require [app.rpm.helpers.form :refer [password-field email-field]]))
 
   (defn on-submit
     ""
@@ -75,8 +75,7 @@
     [:<>
     [:h1 "Come in please"]
     [:form {:on-submit on-submit}
-      ;; [email-field "Your e-mail" {:placeholder "you@yourdomain.com"}]
-      [email-field "Your e-mail" {}]
-      [text-field "Your password"]
+      [email-field {:placeholder "you@yourdomain.com"} "Your e-mail"]
+      [password-field "Your password"]
       [:div [:button "Log me in"]]]])
 #+END_SRC
