@@ -42,6 +42,14 @@ All the other components are defined in the =app.rpm.components= namespace.
      [header][app][footer]])
 #+END_SRC
 
+* Next steps
+** TODO Implement M17n using [[https://github.com/ptaoussanis/tempura][tempura]]
+** TODO Implement routing using [[https://github.com/metosin/reitit][reitit]]
+
+There are examples in the examples directory.
+
+** TODO Add [[https://lilac.town/writing/modern-react-in-cljs-error-boundaries/][error boundaries]]
+
 * Keep reading
 
 - Chapter on [[./components.org][components]].
