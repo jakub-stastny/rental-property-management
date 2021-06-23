@@ -1,18 +1,20 @@
 * Form helpers
 
+(defn string->integer
+  ([s] (recur s 10))
+  ([s base] (Integer/parseInt s base)))
 #+BEGIN_SRC clojure :tangle rpm/helpers/form.cljs :mkdirp yes
   (ns app.rpm.helpers.form "The login component.")
 
   (defn field
     "Generate an input field."
-    [type label & options]
-    (js/console.log {})
-    (js/console.log (or nil {}))
-    [:label
-    [:div label]
-    [:input (or nil {})]]) ; this works
-    ;; [:input (or options {})]]) ; this doesn't
+    ([type label] (field type {} label))
+    ([type options label]
+      [:label
+      [:div label]
+      [:input (assoc options :type type)]]))
 
   (def text-field (partial field "text"))
   (def email-field (partial field "email"))
+  (def password-field (partial field "password"))
 #+END_SRC
