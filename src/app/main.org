@@ -2,18 +2,20 @@
 
 - GitHub doesn't recognise =clojurescript= code blocks, that's why I'm using =clojure= there.
 
-* Core
+* Render the app
+
+This is glue code for our app to actually render. As such, I'm leaving it out of the =app.rpm= namespace.
 
 #+BEGIN_SRC clojure :tangle core.cljs :mkdirp yes
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
     (:require [reagent.core :as r]
-              [app.rpm.main :refer [app]]))
+              [app.rpm.main :refer [spa-app]]))
 
   (defn ^:dev/after-load render
     "Render the toplevel component for this app."
     []
-    (r/render [app] (.getElementById js/document "app")))
+    (r/render [spa-app] (.getElementById js/document "app")))
 
   (defn ^:export main
     "Run application startup logic."
@@ -23,28 +25,19 @@
 
 * Main
 
+This is the top-level application and the entry-point for the glue code.
+
+All the other components are defined in the =app.rpm.components= namespace.
+
 #+BEGIN_SRC clojure :tangle rpm/main.cljs :mkdirp yes
   (ns app.rpm.main "The main Reagent app."
     (:require [app.rpm.components.header :refer [header]])
-    (:require [app.rpm.components.footer :refer [footer]])
-    (:require [app.rpm.components.login :refer [log-in-form]]))
+    (:require [app.rpm.components.app :refer [app]])
+    (:require [app.rpm.components.footer :refer [footer]]))
 
-  (defn router-app
-    "The router app."
-    []
-    [log-in-form])
-
-  (defn app
+  (defn spa-app
     "The main Reagent app."
     []
-    (let [style {
-                :background-color "lightyellow"
-                :padding 20
-                :padding-top 35
-                :padding-bottom 50
-                }]
     [:<>
-     [header]
-     [:div {:style style} [router-app]]
-     [footer]]))
+     [header][app][footer]])
 #+END_SRC

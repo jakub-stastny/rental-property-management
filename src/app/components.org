@@ -1,4 +1,4 @@
-* Layout
+: * Layout
 
 ** Header
 
@@ -21,7 +21,7 @@
 ** Main app
 
 #+BEGIN_SRC clojure :tangle rpm/components/app.cljs :mkdirp yes
-  (ns app.rpm.components.main "The main Reagent app."
+  (ns app.rpm.components.app "The main Reagent app."
     (:require [app.rpm.components.header :refer [header]])
     (:require [app.rpm.components.footer :refer [footer]])
     (:require [app.rpm.components.login :refer [log-in-form]]))
@@ -31,7 +31,6 @@
     []
     [log-in-form])
 
-  ;; (assoc {} :key "value")
   (defn app
     "The main Reagent app."
     []
@@ -41,10 +40,7 @@
                 :padding-top 35
                 :padding-bottom 50
                 }]
-    [:<>
-    [header]
-    [:div {:style style} [router-app]]
-    [footer]]))
+    [:main {:style style} [router-app]]))
 #+END_SRC
 
 ** Footer
