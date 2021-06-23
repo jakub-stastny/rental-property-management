@@ -1,6 +1,6 @@
 * Form helpers
 
-#+BEGIN_SRC clojurescript :tangle helpers/form.cljs :mkdirp yes
+#+BEGIN_SRC clojure :tangle helpers/form.cljs :mkdirp yes
   (ns app.helpers.form "The login component.")
 
   (defn field

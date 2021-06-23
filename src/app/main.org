@@ -1,5 +1,7 @@
 * Core
 
+- GitHub doesn't recognise =clojurescript= code blocks, that's why I'm using =clojure= there.
+
 #+BEGIN_SRC clojure :tangle core.cljs
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
