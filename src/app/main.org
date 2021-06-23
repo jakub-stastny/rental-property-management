@@ -2,7 +2,7 @@
 
 - GitHub doesn't recognise =clojurescript= code blocks, that's why I'm using =clojure= there.
 
-#+BEGIN_SRC clojure :tangle core.cljs
+#+BEGIN_SRC clojure :tangle core.cljs :mkdirp yes
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
     (:require [reagent.core :as r]
@@ -21,35 +21,14 @@
 
 * Namespace
 
-#+BEGIN_SRC clojure :tangle main.cljs
+#+BEGIN_SRC clojure :tangle main.cljs :mkdirp yes
   (ns app.main "The main Reagent app."
     (:require [app.components.login :refer [log-in-form]]))
 #+END_SRC
 
 * Main
 
-#+BEGIN_SRC clojure :tangle main.cljs
-  (defn header
-    "The site header."
-    []
-    (let [style {
-                :padding 10
-                :background-color "aliceblue"
-                :text-align "center"
-                }]
-      [:header {:style style}
-      [:h1 "RPM header"]]))
-
-  (defn footer
-    "The site footer."
-    []
-    (let [style {
-                :padding 10
-                :background-color "lavender"
-                :text-align "center"
-                }]
-      [:footer {:style style} "RPM footer"]))
-
+#+BEGIN_SRC clojure :tangle main.cljs :mkdirp yes
   (defn router-app
     "The router app."
     []
