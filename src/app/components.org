@@ -3,6 +3,8 @@
 ** Header
 
 #+BEGIN_SRC clojure :tangle components/header.cljs :mkdirp yes
+  (ns app.components.header "The main header.")
+
   (defn header
     "The site header."
     []
@@ -19,7 +21,7 @@
 ** Main app
 
 #+BEGIN_SRC clojure :tangle components/app.cljs :mkdirp yes
-  (ns app.main "The main Reagent app."
+  (ns app.components.main "The main Reagent app."
     (:require [app.components.header :refer [header]])
     (:require [app.components.footer :refer [footer]])
     (:require [app.components.login :refer [log-in-form]]))
@@ -48,6 +50,8 @@
 ** Footer
 
 #+BEGIN_SRC clojure :tangle components/footer.cljs :mkdirp yes
+  (ns app.components.footer "The main footer.")
+
   (defn footer
     "The site footer."
     []
@@ -63,8 +67,8 @@
 ** Login
 
 #+BEGIN_SRC clojure :tangle components/login.cljs :mkdirp yes
-  (ns app.login "The login component."
-    (:require app.helpers.form :refer [:text-field :email-field]))
+  (ns app.components.login "The login component."
+    (:require [app.helpers.form :refer [text-field email-field]]))
 
   (defn on-submit
     ""

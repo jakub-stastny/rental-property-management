@@ -1,6 +1,8 @@
-* Core
+* About
 
 - GitHub doesn't recognise =clojurescript= code blocks, that's why I'm using =clojure= there.
+
+* Core
 
 #+BEGIN_SRC clojure :tangle core.cljs :mkdirp yes
   (ns app.core
@@ -19,22 +21,19 @@
     (render))
 #+END_SRC
 
-* Namespace
-
-#+BEGIN_SRC clojure :tangle main.cljs :mkdirp yes
-  (ns app.main "The main Reagent app."
-    (:require [app.components.login :refer [log-in-form]]))
-#+END_SRC
-
 * Main
 
 #+BEGIN_SRC clojure :tangle main.cljs :mkdirp yes
+  (ns app.main "The main Reagent app."
+    (:require [app.components.header :refer [header]])
+    (:require [app.components.footer :refer [footer]])
+    (:require [app.components.login :refer [log-in-form]]))
+
   (defn router-app
     "The router app."
     []
     [log-in-form])
 
-  ;; (assoc {} :key "value")
   (defn app
     "The main Reagent app."
     []
@@ -45,7 +44,7 @@
                 :padding-bottom 50
                 }]
     [:<>
-    [header]
-    [:div {:style style} [router-app]]
-    [footer]]))
+     [header]
+     [:div {:style style} [router-app]]
+     [footer]]))
 #+END_SRC
