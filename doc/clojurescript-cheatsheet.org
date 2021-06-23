@@ -1,0 +1,15 @@
+* Shadow CLJS
+** Features
+
+- Good configuration defaults so you don't have to sweat the details
+- Seamless npm integration
+- Fast builds, reliable caching, ...
+- Supporting various targets :browser, :node-script, :npm-module, :react-native, :chrome-extension, ...
+- Live Reload (CLJS + CSS)
+- CLJS REPL
+- Code splitting (via :modules)
+
+#+BEGIN_SRC shell
+  yarn shadow-cljs node-repl
+  yarn shadow-cljs browser-repl
+#+END_SRC
