@@ -8,4 +8,4 @@ This is the front-end for the [[https://github.com/jakub-stastny/rpm.meta][renta
 
 - The [[./doc/cljs-app.md][cljs-app generator README]].
 - If you're new to Clojure and you're using Emacs, you might like [[https://github.com/jakub-stastny/rpm.backend/blob/master/.env/README.org#writing-clojure-apps-in-emacs][writing Clojure programs in Emacs]] chapter in the backend repo.
-- The [[./src/app/main.org][src/app/main.org][main chapter]].
+- The [[./src/app/main.org][main chapter]].
