@@ -1,5 +1,5 @@
 * Layout
-** Page header
+** Main header
 
 #+BEGIN_SRC clojure :tangle rpm/components/header.cljs :mkdirp yes
   (ns app.rpm.components.header "The main header.")
@@ -23,6 +23,7 @@
   (ns app.rpm.components.app "The main Reagent app."
     (:require [app.rpm.components.login :refer [log-in-form]]))
 
+  ;; A mock app, until we actually implement routing.
   (defn router-app
     "The router app."
     []
@@ -40,7 +41,7 @@
     [:main {:style style} [router-app]]))
 #+END_SRC
 
-** Page footer
+** Main footer
 
 #+BEGIN_SRC clojure :tangle rpm/components/footer.cljs :mkdirp yes
   (ns app.rpm.components.footer "The main footer.")
@@ -57,7 +58,7 @@
 #+END_SRC
 
 * Forms
-** Login
+** The login form
 
 #+BEGIN_SRC clojure :tangle rpm/components/login.cljs :mkdirp yes
   (ns app.rpm.components.login "The login component."
