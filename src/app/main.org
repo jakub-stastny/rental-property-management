@@ -1,6 +1,6 @@
 * Core
 
-#+BEGIN_SRC clojurescript :tangle core.cljs
+#+BEGIN_SRC clojure :tangle core.cljs
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
     (:require [reagent.core :as r]
@@ -19,14 +19,14 @@
 
 * Namespace
 
-#+BEGIN_SRC clojurescript :tangle main.cljs
+#+BEGIN_SRC clojure :tangle main.cljs
   (ns app.main "The main Reagent app."
     (:require [app.components.login :refer [log-in-form]]))
 #+END_SRC
 
 * Main
 
-#+BEGIN_SRC clojurescript :tangle main.cljs
+#+BEGIN_SRC clojure :tangle main.cljs
   (defn header
     "The site header."
     []
