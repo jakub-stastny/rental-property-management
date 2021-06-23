@@ -2,8 +2,8 @@
 
 ** Header
 
-#+BEGIN_SRC clojure :tangle components/header.cljs :mkdirp yes
-  (ns app.components.header "The main header.")
+#+BEGIN_SRC clojure :tangle rpm/components/header.cljs :mkdirp yes
+  (ns app.rpm.components.header "The main header.")
 
   (defn header
     "The site header."
@@ -20,11 +20,11 @@
 
 ** Main app
 
-#+BEGIN_SRC clojure :tangle components/app.cljs :mkdirp yes
-  (ns app.components.main "The main Reagent app."
-    (:require [app.components.header :refer [header]])
-    (:require [app.components.footer :refer [footer]])
-    (:require [app.components.login :refer [log-in-form]]))
+#+BEGIN_SRC clojure :tangle rpm/components/app.cljs :mkdirp yes
+  (ns app.rpm.components.main "The main Reagent app."
+    (:require [app.rpm.components.header :refer [header]])
+    (:require [app.rpm.components.footer :refer [footer]])
+    (:require [app.rpm.components.login :refer [log-in-form]]))
 
   (defn router-app
     "The router app."
@@ -49,8 +49,8 @@
 
 ** Footer
 
-#+BEGIN_SRC clojure :tangle components/footer.cljs :mkdirp yes
-  (ns app.components.footer "The main footer.")
+#+BEGIN_SRC clojure :tangle rpm/components/footer.cljs :mkdirp yes
+  (ns app.rpm.components.footer "The main footer.")
 
   (defn footer
     "The site footer."
@@ -66,9 +66,9 @@
 * Forms
 ** Login
 
-#+BEGIN_SRC clojure :tangle components/login.cljs :mkdirp yes
-  (ns app.components.login "The login component."
-    (:require [app.helpers.form :refer [text-field email-field]]))
+#+BEGIN_SRC clojure :tangle rpm/components/login.cljs :mkdirp yes
+  (ns app.rpm.components.login "The login component."
+    (:require [app.rpm.helpers.form :refer [text-field email-field]]))
 
   (defn on-submit
     ""

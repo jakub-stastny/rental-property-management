@@ -8,7 +8,7 @@
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
     (:require [reagent.core :as r]
-              [app.main :refer [app]]))
+              [app.rpm.main :refer [app]]))
 
   (defn ^:dev/after-load render
     "Render the toplevel component for this app."
@@ -23,11 +23,11 @@
 
 * Main
 
-#+BEGIN_SRC clojure :tangle main.cljs :mkdirp yes
-  (ns app.main "The main Reagent app."
-    (:require [app.components.header :refer [header]])
-    (:require [app.components.footer :refer [footer]])
-    (:require [app.components.login :refer [log-in-form]]))
+#+BEGIN_SRC clojure :tangle rpm/main.cljs :mkdirp yes
+  (ns app.rpm.main "The main Reagent app."
+    (:require [app.rpm.components.header :refer [header]])
+    (:require [app.rpm.components.footer :refer [footer]])
+    (:require [app.rpm.components.login :refer [log-in-form]]))
 
   (defn router-app
     "The router app."

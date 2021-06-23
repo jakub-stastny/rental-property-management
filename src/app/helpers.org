@@ -1,7 +1,7 @@
 * Form helpers
 
-#+BEGIN_SRC clojure :tangle helpers/form.cljs :mkdirp yes
-  (ns app.helpers.form "The login component.")
+#+BEGIN_SRC clojure :tangle rpm/helpers/form.cljs :mkdirp yes
+  (ns app.rpm.helpers.form "The login component.")
 
   (defn field
     "Generate an input field."
