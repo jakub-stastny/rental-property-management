@@ -1,0 +1,84 @@
+* Layout
+
+** Header
+
+#+BEGIN_SRC clojurescript :tangle components/header.cljs
+  (defn header
+    "The site header."
+    []
+    (let [style {
+                :padding 10
+                :background-color "aliceblue"
+                :text-align "center"
+                }]
+      [:header {:style style}
+      [:h1 "RPM header"]]))
+
+#+END_SRC
+
+** Main app
+
+#+BEGIN_SRC clojurescript :tangle components/app.cljs
+  (ns app.main "The main Reagent app."
+    (:require [app.components.header :refer [header]])
+    (:require [app.components.footer :refer [footer]])
+    (:require [app.components.login :refer [log-in-form]]))
+
+  (defn router-app
+    "The router app."
+    []
+    [log-in-form])
+
+  ;; (assoc {} :key "value")
+  (defn app
+    "The main Reagent app."
+    []
+    (let [style {
+                :background-color "lightyellow"
+                :padding 20
+                :padding-top 35
+                :padding-bottom 50
+                }]
+    [:<>
+    [header]
+    [:div {:style style} [router-app]]
+    [footer]]))
+#+END_SRC
+
+** Footer
+
+#+BEGIN_SRC clojurescript :tangle components/footer.cljs
+  (defn footer
+    "The site footer."
+    []
+    (let [style {
+                :padding 10
+                :background-color "lavender"
+                :text-align "center"
+                }]
+      [:footer {:style style} "RPM footer"]))
+#+END_SRC
+
+* Forms
+** Login
+
+#+BEGIN_SRC clojurescript :tangle components/login.cljs :mkdirp yes
+  (ns app.login "The login component."
+    (:require app.helpers.form :refer [:text-field :email-field]))
+
+  (defn on-submit
+    ""
+    [event]
+    (js/console.log "Submit"))
+
+  (defn log-in-form
+    "..."
+    []
+    [:<>
+    [:h1 "Come in please"]
+    [:form {:on-submit on-submit}
+      ;; [email-field "Your e-mail" {:placeholder "you@yourdomain.com"}]
+      [email-field "Your e-mail" {}]
+      [text-field "Your password"]
+      [:div [:button "Log me in"]]]])
+#+END_SRC

@@ -1,0 +1,18 @@
+* Form helpers
+
+#+BEGIN_SRC clojurescript :tangle helpers/form.cljs :mkdirp yes
+  (ns app.helpers.form "The login component.")
+
+  (defn field
+    "Generate an input field."
+    [type label & options]
+    (js/console.log {})
+    (js/console.log (or nil {}))
+    [:label
+    [:div label]
+    [:input (or nil {})]]) ; this works
+    ;; [:input (or options {})]]) ; this doesn't
+
+  (def text-field (partial field "text"))
+  (def email-field (partial field "email"))
+#+END_SRC

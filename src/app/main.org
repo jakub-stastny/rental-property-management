@@ -1,0 +1,70 @@
+* Core
+
+#+BEGIN_SRC clojurescript :tangle core.cljs
+  (ns app.core
+    "This namespace contains your application and is the entrypoint for 'yarn start'."
+    (:require [reagent.core :as r]
+              [app.main :refer [app]]))
+
+  (defn ^:dev/after-load render
+    "Render the toplevel component for this app."
+    []
+    (r/render [app] (.getElementById js/document "app")))
+
+  (defn ^:export main
+    "Run application startup logic."
+    []
+    (render))
+#+END_SRC
+
+* Namespace
+
+#+BEGIN_SRC clojurescript :tangle main.cljs
+  (ns app.main "The main Reagent app."
+    (:require [app.components.login :refer [log-in-form]]))
+#+END_SRC
+
+* Main
+
+#+BEGIN_SRC clojurescript :tangle main.cljs
+  (defn header
+    "The site header."
+    []
+    (let [style {
+                :padding 10
+                :background-color "aliceblue"
+                :text-align "center"
+                }]
+      [:header {:style style}
+      [:h1 "RPM header"]]))
+
+  (defn footer
+    "The site footer."
+    []
+    (let [style {
+                :padding 10
+                :background-color "lavender"
+                :text-align "center"
+                }]
+      [:footer {:style style} "RPM footer"]))
+
+  (defn router-app
+    "The router app."
+    []
+    [log-in-form])
+
+  ;; (assoc {} :key "value")
+  (defn app
+    "The main Reagent app."
+    []
+    (let [style {
+                :background-color "lightyellow"
+                :padding 20
+                :padding-top 35
+                :padding-bottom 50
+                }]
+    [:<>
+    [header]
+    [:div {:style style} [router-app]]
+    [footer]]))
+#+END_SRC
