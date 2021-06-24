@@ -6,6 +6,6 @@ Lorem ipsum.
 
 Lorem ipsum.
 
-** [[./cljs-app.md][ClojureScript cheatsheet]]
+** [[./cljs-app.md][CLJS app README]]
 
 Lorem ipsum.
