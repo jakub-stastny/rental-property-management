@@ -1,0 +1,11 @@
+* The setup
+
+Lorem ipsum.
+
+** [[./environment.org][The environment]
+
+Lorem ipsum.
+
+** [[./project.org][Project setup]
+
+Lorem ipsum.
