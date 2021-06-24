@@ -6,8 +6,4 @@ This is the front-end for the [[https://github.com/jakub-stastny/rpm.meta][renta
 
 /If you wonder where is the source code, it's not in the source control – not directly anyway. Since I'm using literate programming, all the source code is in the [[./chapters][chapters]]. There is a chapter about [[./chapters/literate-programming.org][literate programming]], explaining how to export the source code out of the chapters./
 
-* Start reading
-
-- If you're new to Clojure(Script) and you're using Emacs, you might like [[https://github.com/jakub-stastny/rpm.backend/blob/master/.env/README.org#writing-clojure-apps-in-emacs][writing Clojure programs in Emacs]] chapter in the backend repo.
-- If you want to actually run the app, there's some [[./chapters/setup][setup]] you need to do first.
-- After that, you're good to start reading (and/or developing) [[./chapters/code][the app]].
+* [[./chapters][Start reading]]
