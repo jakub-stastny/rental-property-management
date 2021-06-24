@@ -1,3 +1,6 @@
+* A
+
+#+BEGIN_SRC html :tangle public/index.html :mkdirp yes
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,3 +18,9 @@
     <script src="/js/main.js" type="text/javascript"></script>
   </body>
 </html>
+#+END_SRC
+
+* B
+
+#+BEGIN_SRC css :tangle public/css/style.css :mkdirp yes
+#+END_SRC
