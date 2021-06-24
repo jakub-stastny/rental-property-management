@@ -1,0 +1,77 @@
+#+PROPERTY: header-args :mkdirp yes :comments org :dir ~/rpm.frontend.code :prologue "# Generated from https://github.com/jakub-stastny/rpm.frontend/blob/literate/setup/development-environment.org"
+
+* About
+
+Literate DevOps script to set up the current project.
+
+* Installation
+
+In Emacs press =C-c C-c= to evaluate each code block in this section.
+
+** Emacs packages
+
+#+BEGIN_SRC elisp :results silent
+  (dolist (package '(clojure-mode cider))
+    (unless (package-installed-p package)
+      (message "~ Installing %s." package)
+      (package-install package)))
+#+END_SRC
+
+* Configuration
+
+In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
+
+** Emacs per-project configuration
+
+We want to keep environment-specific configuration out of our =~/.emacs=.
+
+#+BEGIN_SRC elisp :tangle .env/emacs.el
+  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
+
+  (load "literate-programming")
+  (add-to-list 'org-src-lang-modes '("clojurescript" . "clojure-mode"))
+  (load-theme 'tsdh-light)
+#+END_SRC
+
+*** Links
+
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el][~/zsh/environments/elisp/literate-programming.el]]
+
+** ZSH per-project configuration
+
+#+BEGIN_SRC shell :tangle .env/zsh.zsh
+  load ~/.zsh/environments/helpers.zsh && save-function-list
+  load ~/.zsh/environments/basic.zsh
+  load ~/.zsh/environments/emacs.zsh
+
+  rename-first-tab
+
+  # Custom functions & aliases.
+
+  # We compile on save, but for the first-time compilation,
+  # we want to be able to do it from the shell, rather than
+  # having to go and save manually each file from Emacs.
+  tangle() {
+    cd src
+    echo "(dolist (file argv) (message file) (find-file file) (org-babel-tangle))" > compile.el
+    emacs --script compile.el *.org
+    rm compile.el
+    cd -
+  }
+
+  run() {
+    clj -M -m rpm.main
+  }
+
+  t() {
+    clj -X:test
+  }
+
+  report-custom-functions
+#+END_SRC
+
+*** Links
+
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/helpers.zsh][~/zsh/environments/helpers.zsh]]
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/basic.zsh][~/zsh/environments/basic.zsh]]
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/emacs.zsh][~/zsh/environments/emacs.zsh]]
