@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-06-24 Thu 18:34 -->
+<!-- 2021-06-24 Thu 23:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -40,7 +40,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +52,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -161,6 +161,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -180,51 +193,28 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body>
@@ -233,22 +223,23 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga1514a4">1. About</a></li>
-<li><a href="#org625878f">2. Installation</a>
+<li><a href="#org0950daf">1. About</a></li>
+<li><a href="#orgd7e9b3a">2. Installation</a>
 <ul>
-<li><a href="#org2150f2b">2.1. Emacs packages</a></li>
+<li><a href="#org3d49b94">2.1. Emacs packages</a></li>
 </ul>
 </li>
-<li><a href="#org2af2ddf">3. Configuration</a>
+<li><a href="#org82446b5">3. Configuration</a>
 <ul>
-<li><a href="#org82fcdbe">3.1. Emacs per-project configuration</a>
+<li><a href="#org9ac7052">3.1. Emacs per-project configuration</a>
 <ul>
-<li><a href="#org675e7a0">3.1.1. Links</a></li>
+<li><a href="#org3ce69c8">3.1.1. Links</a></li>
 </ul>
 </li>
-<li><a href="#org4b2f37e">3.2. ZSH per-project configuration</a>
+<li><a href="#org5a2f13a">3.2. Publishing</a></li>
+<li><a href="#org3859c1a">3.3. ZSH per-project configuration</a>
 <ul>
-<li><a href="#org00de9d0">3.2.1. Links</a></li>
+<li><a href="#org21162dd">3.3.1. Links</a></li>
 </ul>
 </li>
 </ul>
@@ -257,8 +248,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orga1514a4" class="outline-2">
-<h2 id="orga1514a4"><span class="section-number-2">1</span> About</h2>
+<div id="outline-container-org0950daf" class="outline-2">
+<h2 id="org0950daf"><span class="section-number-2">1</span> About</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Literate DevOps script to set up the current project.
@@ -266,16 +257,16 @@ Literate DevOps script to set up the current project.
 </div>
 </div>
 
-<div id="outline-container-org625878f" class="outline-2">
-<h2 id="org625878f"><span class="section-number-2">2</span> Installation</h2>
+<div id="outline-container-orgd7e9b3a" class="outline-2">
+<h2 id="orgd7e9b3a"><span class="section-number-2">2</span> Installation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 In Emacs press <code>C-c C-c</code> to evaluate each code block in this section.
 </p>
 </div>
 
-<div id="outline-container-org2150f2b" class="outline-3">
-<h3 id="org2150f2b"><span class="section-number-3">2.1</span> Emacs packages</h3>
+<div id="outline-container-org3d49b94" class="outline-3">
+<h3 id="org3d49b94"><span class="section-number-3">2.1</span> Emacs packages</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">dolist</span> (package '(clojure-mode cider))
@@ -288,33 +279,42 @@ In Emacs press <code>C-c C-c</code> to evaluate each code block in this section.
 </div>
 </div>
 
-<div id="outline-container-org2af2ddf" class="outline-2">
-<h2 id="org2af2ddf"><span class="section-number-2">3</span> Configuration</h2>
+<div id="outline-container-org82446b5" class="outline-2">
+<h2 id="org82446b5"><span class="section-number-2">3</span> Configuration</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Emacs press <code>C-c C-v t</code> to tangle all the code blocks in this file.
 </p>
 </div>
 
-<div id="outline-container-org82fcdbe" class="outline-3">
-<h3 id="org82fcdbe"><span class="section-number-3">3.1</span> Emacs per-project configuration</h3>
+<div id="outline-container-org9ac7052" class="outline-3">
+<h3 id="org9ac7052"><span class="section-number-3">3.1</span> Emacs per-project configuration</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We want to keep environment-specific configuration out of our <code>~/.emacs</code>.
 </p>
 
+<p>
+<a href="https://orgmode.org/worg/org-contrib/babel/languages/index.html">https://orgmode.org/worg/org-contrib/babel/languages/index.html</a> CLJS not supported directly
+</p>
+
 <div class="org-src-container">
 <pre class="src src-elisp">(add-to-list 'load-path (expand-file-name <span style="color: #8b2252;">"~/.zsh/environments/elisp"</span>))
+(add-to-list 'load-path (expand-file-name <span style="color: #8b2252;">"~/rpm.frontend/.env/elisp"</span>))
 
 (load <span style="color: #8b2252;">"literate-programming"</span>)
-(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"clojurescript"</span> . <span style="color: #8b2252;">"clojure-mode"</span>))
-(load-theme 'tsdh-light)
+
+(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"clojurescript"</span> . <span style="color: #8b2252;">"clojurescript-mode"</span>))
+(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"edn"</span> . <span style="color: #8b2252;">"clojure-mode"</span>))
+
+(load <span style="color: #8b2252;">"publish"</span>)
+<span style="color: #b22222;">;</span><span style="color: #b22222;">(load-theme 'tsdh-light)</span>
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org675e7a0" class="outline-4">
-<h4 id="org675e7a0"><span class="section-number-4">3.1.1</span> Links</h4>
+<div id="outline-container-org3ce69c8" class="outline-4">
+<h4 id="org3ce69c8"><span class="section-number-4">3.1.1</span> Links</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el">~/zsh/environments/elisp/literate-programming.el</a></li>
@@ -323,9 +323,52 @@ We want to keep environment-specific configuration out of our <code>~/.emacs</co
 </div>
 </div>
 
-<div id="outline-container-org4b2f37e" class="outline-3">
-<h3 id="org4b2f37e"><span class="section-number-3">3.2</span> ZSH per-project configuration</h3>
+
+<div id="outline-container-org5a2f13a" class="outline-3">
+<h3 id="org5a2f13a"><span class="section-number-3">3.2</span> Publishing</h3>
 <div class="outline-text-3" id="text-3-2">
+<p>
+Tangle to a different file and load it from emacs.el
+</p>
+
+<p>
+<code>org-publish-project</code>
+</p>
+
+<p>
+Do we want a script to wrap this? We have to rename README.html to index.html.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
+
+(<span style="color: #a020f0;">setq</span> org-publish-project-alist `(
+  (<span style="color: #8b2252;">"rpm.frontend"</span>
+    <span style="color: #483d8b;">:components</span> (<span style="color: #8b2252;">"rpm.frontend/documentation"</span> <span style="color: #8b2252;">"rpm.frontend/static"</span>))
+
+  (<span style="color: #8b2252;">"rpm.frontend/documentation"</span>
+    <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/rpm.frontend"</span>
+    <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"org"</span>
+    <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/rpm.frontend/exports/documentation"</span>
+    <span style="color: #483d8b;">:recursive</span> t
+    <span style="color: #483d8b;">:publishing-function</span> org-html-publish-to-html
+    <span style="color: #483d8b;">:headline-levels</span> 4
+    <span style="color: #483d8b;">:auto-preamble</span> t)
+
+  (<span style="color: #8b2252;">"rpm.frontend/static"</span>
+    <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/rpm.frontend"</span>
+    <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"css</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">js</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">png</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">jpg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">gif</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">pdf\\"</span>
+    <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/rpm.frontend/exports/documentation"</span>
+    <span style="color: #483d8b;">:recursive</span> t
+    <span style="color: #483d8b;">:publishing-function</span> org-publish-attachment)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3859c1a" class="outline-3">
+<h3 id="org3859c1a"><span class="section-number-3">3.3</span> ZSH per-project configuration</h3>
+<div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-shell">load ~/.zsh/environments/helpers.zsh &amp;&amp; save-function-list
 load ~/.zsh/environments/basic.zsh
@@ -339,11 +382,13 @@ rename-first-tab
 <span style="color: #b22222;"># </span><span style="color: #b22222;">we want to be able to do it from the shell, rather than</span>
 <span style="color: #b22222;"># </span><span style="color: #b22222;">having to go and save manually each file from Emacs.</span>
 <span style="color: #0000ff;">tangle</span>() {
-  <span style="color: #483d8b;">cd</span> src
-  <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"(dolist (file argv) (message file) (find-file file) (org-babel-tangle))"</span> &gt; compile.el
-  emacs --script compile.el *.org
-  rm compile.el
-  <span style="color: #483d8b;">cd</span> -
+  <span style="color: #a020f0;">for</span> dir<span style="color: #a020f0;"> in</span> *(/); <span style="color: #a020f0;">do</span>
+    <span style="color: #483d8b;">cd</span> $<span style="color: #a0522d;">dir</span>
+    <span style="color: #483d8b;">echo</span> <span style="color: #8b2252;">"(dolist (file argv) (message file) (find-file file) (org-babel-tangle))"</span> &gt; compile.el
+    emacs --script compile.el *.org
+    rm compile.el
+    <span style="color: #483d8b;">cd</span> -
+  <span style="color: #a020f0;">done</span>
 }
 
 <span style="color: #0000ff;">run</span>() {
@@ -359,9 +404,9 @@ report-custom-functions
 </div>
 </div>
 
-<div id="outline-container-org00de9d0" class="outline-4">
-<h4 id="org00de9d0"><span class="section-number-4">3.2.1</span> Links</h4>
-<div class="outline-text-4" id="text-3-2-1">
+<div id="outline-container-org21162dd" class="outline-4">
+<h4 id="org21162dd"><span class="section-number-4">3.3.1</span> Links</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/helpers.zsh">~/zsh/environments/helpers.zsh</a></li>
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/basic.zsh">~/zsh/environments/basic.zsh</a></li>
@@ -374,8 +419,8 @@ report-custom-functions
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: root</p>
-<p class="date">Created: 2021-06-24 Thu 18:34</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2021-06-24 Thu 23:09</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

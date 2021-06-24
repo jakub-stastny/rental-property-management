@@ -223,124 +223,164 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdac9ab8">1. Layout</a>
+<li><a href="#orge3272b4">1. Requirements</a>
 <ul>
-<li><a href="#org10d8436">1.1. Main header</a></li>
-<li><a href="#org3aa39ba">1.2. Main app</a></li>
-<li><a href="#orgf3d3ad6">1.3. Main footer</a></li>
+<li><a href="#orge9c02de">1.1. Customer journey</a>
+<ul>
+<li><a href="#org09b10d0">1.1.1. Properties</a>
+<ul>
+<li><a href="#orgf1f2320">1.1.1.1. As a customer, I want to see the list of all my properties.</a></li>
+<li><a href="#org65b098c">1.1.1.2. As a customer, I want to see details of each of my properties.</a></li>
 </ul>
 </li>
-<li><a href="#org6921d0b">2. Forms</a>
+<li><a href="#org8b8c661">1.1.2. Receipts</a>
 <ul>
-<li><a href="#org4e953f3">2.1. The login form</a></li>
+<li><a href="#org652d2c1">1.1.2.1. As a customer, I want to be able to review all my income payments in one place.</a></li>
+<li><a href="#org45eacfa">1.1.2.2. As a customer, I want to be able to see all my income of a property in one place.</a></li>
+</ul>
+</li>
+<li><a href="#orge5010d4">1.1.3. Incidents</a>
+<ul>
+<li><a href="#org1ce8610">1.1.3.1. As a customer, I want to be able to see all the incidents in one place.</a></li>
+<li><a href="#org2a03ea1">1.1.3.2. As a customer, I want to be able to see all the incidents of a property in one place.</a></li>
+</ul>
+</li>
+<li><a href="#org477cca0">1.1.4. Account</a>
+<ul>
+<li><a href="#org72fe085">1.1.4.1. As a customer, I want to be able to update my personal information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf8b1fe8">1.2. Admin journey</a>
+<ul>
+<li><a href="#org6fbf202">1.2.1. <span class="todo TODO">TODO</span> Describe</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdac9ab8" class="outline-2">
-<h2 id="orgdac9ab8"><span class="section-number-2">1</span> Layout</h2>
+<div id="outline-container-orge3272b4" class="outline-2">
+<h2 id="orge3272b4"><span class="section-number-2">1</span> Requirements</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org10d8436" class="outline-3">
-<h3 id="org10d8436"><span class="section-number-3">1.1</span> Main header</h3>
+<div id="outline-container-orge9c02de" class="outline-3">
+<h3 id="orge9c02de"><span class="section-number-3">1.1</span> Customer journey</h3>
 <div class="outline-text-3" id="text-1-1">
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.rpm.components.header</span> <span style="color: #8b2252;">"The main header."</span>)
+</div>
+<div id="outline-container-org09b10d0" class="outline-4">
+<h4 id="org09b10d0"><span class="section-number-4">1.1.1</span> Properties</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Always identified by a <code>slug</code>, rather than by ID.
+</p>
+</div>
 
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">header</span>
-  <span style="color: #8b2252;">"The site header."</span>
-  []
-  (<span style="color: #a020f0;">let</span> [style {
-              <span style="color: #008b8b;">:padding</span> 10
-              <span style="color: #008b8b;">:background-color</span> <span style="color: #8b2252;">"aliceblue"</span>
-              <span style="color: #008b8b;">:text-align</span> <span style="color: #8b2252;">"center"</span>
-              }]
-    [<span style="color: #008b8b;">:header</span> {<span style="color: #008b8b;">:style</span> style}
-    [<span style="color: #008b8b;">:h1</span> <span style="color: #8b2252;">"RPM header"</span>]]))
+<div id="outline-container-orgf1f2320" class="outline-5">
+<h5 id="orgf1f2320"><span class="section-number-5">1.1.1.1</span> As a customer, I want to see the list of all my properties.</h5>
+<div class="outline-text-5" id="text-1-1-1-1">
+<p>
+Route <code>GET /properties</code>.
+</p>
+</div>
+</div>
 
-</pre>
+<div id="outline-container-org65b098c" class="outline-5">
+<h5 id="org65b098c"><span class="section-number-5">1.1.1.2</span> As a customer, I want to see details of each of my properties.</h5>
+<div class="outline-text-5" id="text-1-1-1-2">
+<p>
+Route <code>GET /properties/:slug</code>.
+</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3aa39ba" class="outline-3">
-<h3 id="org3aa39ba"><span class="section-number-3">1.2</span> Main app</h3>
+<div id="outline-container-org8b8c661" class="outline-4">
+<h4 id="org8b8c661"><span class="section-number-4">1.1.2</span> Receipts</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Always identified by a combination of <code>property-slug</code> and <code>date</code>, rather than by ID.
+</p>
+</div>
+
+<div id="outline-container-org652d2c1" class="outline-5">
+<h5 id="org652d2c1"><span class="section-number-5">1.1.2.1</span> As a customer, I want to be able to review all my income payments in one place.</h5>
+<div class="outline-text-5" id="text-1-1-2-1">
+<p>
+Route <code>GET /receipts</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org45eacfa" class="outline-5">
+<h5 id="org45eacfa"><span class="section-number-5">1.1.2.2</span> As a customer, I want to be able to see all my income of a property in one place.</h5>
+<div class="outline-text-5" id="text-1-1-2-2">
+<p>
+Route <code>GET /property/:slug/receipts</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge5010d4" class="outline-4">
+<h4 id="orge5010d4"><span class="section-number-4">1.1.3</span> Incidents</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+Always identified by a combination of <code>property-slug</code> and <code>date</code>, rather than by ID.
+</p>
+</div>
+
+<div id="outline-container-org1ce8610" class="outline-5">
+<h5 id="org1ce8610"><span class="section-number-5">1.1.3.1</span> As a customer, I want to be able to see all the incidents in one place.</h5>
+<div class="outline-text-5" id="text-1-1-3-1">
+<p>
+Route <code>GET /incidents</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a03ea1" class="outline-5">
+<h5 id="org2a03ea1"><span class="section-number-5">1.1.3.2</span> As a customer, I want to be able to see all the incidents of a property in one place.</h5>
+<div class="outline-text-5" id="text-1-1-3-2">
+<p>
+Route <code>GET /property/:slug/incidents</code>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org477cca0" class="outline-4">
+<h4 id="org477cca0"><span class="section-number-4">1.1.4</span> Account</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div>
+<div id="outline-container-org72fe085" class="outline-5">
+<h5 id="org72fe085"><span class="section-number-5">1.1.4.1</span> As a customer, I want to be able to update my personal information</h5>
+<div class="outline-text-5" id="text-1-1-4-1">
+<p>
+Bank connection, email etc.
+</p>
+
+<p>
+Routes <code>GET /account</code> and <code>PATCH /account</code>.
+</p>
+
+<p>
+Let's use <code>PATCH</code> rather than <code>PUT</code>, because we want to save each field once a field's focus is lost, rather than to have to use a save button.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf8b1fe8" class="outline-3">
+<h3 id="orgf8b1fe8"><span class="section-number-3">1.2</span> Admin journey</h3>
 <div class="outline-text-3" id="text-1-2">
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.rpm.components.app</span> <span style="color: #8b2252;">"The main Reagent app."</span>
-  (<span style="color: #008b8b;">:require</span> [app.rpm.components.login <span style="color: #008b8b;">:refer</span> [log-in-form]]))
-
-<span style="color: #b22222;">;; </span><span style="color: #b22222;">A mock app, until we actually implement routing.</span>
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">router-app</span>
-  <span style="color: #8b2252;">"The router app."</span>
-  []
-  [log-in-form])
-
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">app</span>
-  <span style="color: #8b2252;">"The main Reagent app."</span>
-  []
-  (<span style="color: #a020f0;">let</span> [style {
-              <span style="color: #008b8b;">:background-color</span> <span style="color: #8b2252;">"lightyellow"</span>
-              <span style="color: #008b8b;">:padding</span> 20
-              <span style="color: #008b8b;">:padding-top</span> 35
-              <span style="color: #008b8b;">:padding-bottom</span> 50
-              }]
-  [<span style="color: #008b8b;">:main</span> {<span style="color: #008b8b;">:style</span> style} [router-app]]))
-</pre>
 </div>
-</div>
-</div>
-
-<div id="outline-container-orgf3d3ad6" class="outline-3">
-<h3 id="orgf3d3ad6"><span class="section-number-3">1.3</span> Main footer</h3>
-<div class="outline-text-3" id="text-1-3">
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.rpm.components.footer</span> <span style="color: #8b2252;">"The main footer."</span>)
-
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">footer</span>
-  <span style="color: #8b2252;">"The site footer."</span>
-  []
-  (<span style="color: #a020f0;">let</span> [style {
-              <span style="color: #008b8b;">:padding</span> 10
-              <span style="color: #008b8b;">:background-color</span> <span style="color: #8b2252;">"lavender"</span>
-              <span style="color: #008b8b;">:text-align</span> <span style="color: #8b2252;">"center"</span>
-              }]
-    [<span style="color: #008b8b;">:footer</span> {<span style="color: #008b8b;">:style</span> style} <span style="color: #8b2252;">"RPM footer"</span>]))
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org6921d0b" class="outline-2">
-<h2 id="org6921d0b"><span class="section-number-2">2</span> Forms</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org4e953f3" class="outline-3">
-<h3 id="org4e953f3"><span class="section-number-3">2.1</span> The login form</h3>
-<div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.rpm.components.login</span> <span style="color: #8b2252;">"The login component."</span>
-  (<span style="color: #008b8b;">:require</span> [app.rpm.helpers.form <span style="color: #008b8b;">:refer</span> [password-field email-field]]))
-
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">on-submit</span>
-  <span style="color: #8b2252;">""</span>
-  [event]
-  (<span style="color: #228b22;">js</span>/console.log <span style="color: #8b2252;">"Submit"</span>))
-
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">log-in-form</span>
-  <span style="color: #8b2252;">"..."</span>
-  []
-  [<span style="color: #008b8b;">:&lt;&gt;</span>
-  [<span style="color: #008b8b;">:h1</span> <span style="color: #8b2252;">"Come in please"</span>]
-  [<span style="color: #008b8b;">:form</span> {<span style="color: #008b8b;">:on-submit</span> on-submit}
-    [email-field {<span style="color: #008b8b;">:placeholder</span> <span style="color: #8b2252;">"you@yourdomain.com"</span>} <span style="color: #8b2252;">"Your e-mail"</span>]
-    [password-field <span style="color: #8b2252;">"Your password"</span>]
-    [<span style="color: #008b8b;">:div</span> [<span style="color: #008b8b;">:button</span> <span style="color: #8b2252;">"Log me in"</span>]]]])
-</pre>
-</div>
+<div id="outline-container-org6fbf202" class="outline-4">
+<h4 id="org6fbf202"><span class="section-number-4">1.2.1</span> <span class="todo TODO">TODO</span> Describe</h4>
 </div>
 </div>
 </div>
