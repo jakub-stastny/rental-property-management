@@ -1,3 +1,5 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
+
 * A
 
 #+BEGIN_SRC html :tangle public/index.html :mkdirp yes

@@ -1,3 +1,5 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
+
 * About
 
 [[https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml][https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml/badge.svg]]

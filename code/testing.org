@@ -1,3 +1,5 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
+
 * End-to-end tests
 
 #+BEGIN_SRC clojure :tangle e2e/core.cljs :mkdirp yes
