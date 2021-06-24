@@ -8,4 +8,4 @@ This branch is only the /generated code/ though. It is generated from the [[http
 
 If you're not used to literate programming, this (the =generated-code=) branch might be easier to wrap your head around, but there is a good reason for literate programming: especially the documentation. So you will not get the full idea about the project from the generated code only.
 
-If you prefer, start reading the literate version [[https://github.com/jakub-stastny/rpm.frontend/blob/literate/chapters][here]].
+So if you prefer, start reading the literate version [[https://github.com/jakub-stastny/rpm.frontend/blob/literate/chapters][here]].
