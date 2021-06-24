@@ -1,0 +1,49 @@
+* Requirements
+** Customer journey
+*** Properties
+
+Always identified by a =slug=, rather than by ID.
+
+**** As a customer, I want to see the list of all my properties.
+
+Route =GET /properties=.
+
+**** As a customer, I want to see details of each of my properties.
+
+Route =GET /properties/:slug=.
+
+*** Receipts
+
+Always identified by a combination of =property-slug= and =date=, rather than by ID.
+
+**** As a customer, I want to be able to review all my income payments in one place.
+
+Route =GET /receipts=.
+
+**** As a customer, I want to be able to see all my income of a property in one place.
+
+Route =GET /property/:slug/receipts=.
+
+*** Incidents
+
+Always identified by a combination of =property-slug= and =date=, rather than by ID.
+
+**** As a customer, I want to be able to see all the incidents in one place.
+
+Route =GET /incidents=.
+
+**** As a customer, I want to be able to see all the incidents of a property in one place.
+
+Route =GET /property/:slug/incidents=.
+
+*** Account
+**** As a customer, I want to be able to update my personal information
+
+Bank connection, email etc.
+
+Routes =GET /account= and =PATCH /account=.
+
+Let's use =PATCH= rather than =PUT=, because we want to save each field once a field's focus is lost, rather than to have to use a save button.
+
+** Admin journey
+*** TODO Describe
