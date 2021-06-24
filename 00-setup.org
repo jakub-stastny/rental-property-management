@@ -1,0 +1,118 @@
+* Setup
+** Git ignore
+
+Org mode files are the single source of truth. Hence we don't need to check the generated files in the source control.
+
+The only files that we do need to keep is =yarn.lock=, since it's generated and necessary to keep track of the exact versions of libraries we're using and =.github=, so GitHub knows how to run the tests.
+
+With that said the GitHub workflow is also generated. See the chapter on [[./testing.org][testing]].
+
+#+BEGIN_SRC gitignore :tangle .gitignore
+  *
+  !*.org
+  !yarn.lock
+  !.github
+#+END_SRC
+
+By the way have you noticed that this =.gitignore= ignores itself?
+
+** Editor config
+
+https://EditorConfig.org
+
+#+BEGIN_SRC editorconfig :tangle .editorconfig
+  root = true
+
+  # Unix-style newlines with a newline ending every file
+  [*]
+  end_of_line = lf
+  insert_final_newline = true
+  charset = utf-8
+  indent_style = space
+  indent_size = 2
+  trim_trailing_whitespace = true
+#+END_SRC
+
+** Zprint
+
+#+BEGIN_SRC clojure :tangle .zprintrc
+  {:style :indent-only}
+#+END_SRC
+
+** CLJ Kondo
+
+#+BEGIN_SRC clojure :tangle .clj-kondo/config.edn :mkdirp yes
+  {:lint-as {devcards.core/defcard cljs.core/def
+            devcards.core/deftest cljs.core/def}}
+#+END_SRC
+
+** Package.json
+
+#+BEGIN_SRC javascript :tangle package.json
+  {
+    "name": "rpm",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+      "sc": "shadow-cljs",
+      "server": "shadow-cljs stop && shadow-cljs start",
+      "start": "shadow-cljs watch app",
+      "cards": "shadow-cljs watch cards",
+      "build": "yarn clean && shadow-cljs release app",
+      "test": "shadow-cljs compile test && node out/test.js",
+      "test:watch": "shadow-cljs watch test --config-merge \"{:autorun true}\"",
+      "e2e": "shadow-cljs compile e2e && node out/e2e.js",
+      "report": "shadow-cljs run shadow.cljs.build-report app report.html",
+      "lint": "clj-kondo --lint src",
+      "format": "zprint-clj --hang -i \"./src/**/*.{clj,cljs,cljc,edn}\" -o ./ && zprint-clj -i \"./*.edn\" -o ./",
+      "clean": "rimraf public/js"
+    },
+    "devDependencies": {
+      "@testing-library/dom": "^7.19.0",
+      "@testing-library/react": "^10.4.3",
+      "clj-kondo": "2020.11.7",
+      "highlight.js": "10.1.1",
+      "jsdom": "^16.2.2",
+      "jsdom-global": "^3.0.2",
+      "marked": "^1.1.0",
+      "rimraf": "~3.0.2",
+      "serve-handler": "~6.1.3",
+      "shadow-cljs": "~2.10.13",
+      "taiko": "~1.0.12",
+      "taiko-diagnostics": "~0.4.0",
+      "zprint-clj": "~0.8.0"
+    },
+    "dependencies": {
+      "create-react-class": "~15.6.3",
+      "react": "~16.8.0",
+      "react-dom": "~16.8.0"
+    }
+  }
+#+END_SRC
+
+* Shadow CLJS
+
+#+BEGIN_SRC clojure :tangle shadow-cljs.edn
+  {:builds
+  {:app {:asset-path "/js"
+          :modules {:main {:init-fn app.core/main}}
+          :output-dir "public/js"
+          :target :browser}
+    :cards {:asset-path "/js"
+            :modules {:main {:init-fn app.cards/main}}
+            :compiler-options {:devcards true}
+            :output-dir "public/js"
+            :target :browser}
+    :test {:ns-regexp "app.cards"
+          :output-to "out/test.js"
+          :target :node-test}
+    :e2e {:ns-regexp "e2e.*"
+          :output-to "out/e2e.js"
+          :target :node-test}}
+  :dependencies [[reagent "0.8.1"]
+                  [devcards "0.2.6"]]
+  :jvm-opts ["-Xmx600m"] ; Give JVM more memory.
+  :dev-http {8000 "public"}
+  :nrepl {:port 3333}
+  :source-paths ["src"]}
+#+END_SRC
