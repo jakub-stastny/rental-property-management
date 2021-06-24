@@ -2,10 +2,10 @@
 
 Lorem ipsum.
 
-** [[./environment.org][The environment]
+** [[./environment.org][The environment]]
 
 Lorem ipsum.
 
-** [[./project.org][Project setup]
+** [[./project.org][Project setup]]
 
 Lorem ipsum.
