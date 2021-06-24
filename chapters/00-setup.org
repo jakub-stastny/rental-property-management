@@ -9,7 +9,7 @@ With that said the GitHub workflow is also generated. See the chapter on [[./tes
 
 #+BEGIN_SRC gitignore :tangle .gitignore
   *
-  !**/*.org
+  !*.org
   !yarn.lock
   !.github
 #+END_SRC
