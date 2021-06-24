@@ -1,10 +1,10 @@
 * Welcome to the RPM frontend book!
 
-It has three parts.
+If you're new to Clojure(Script) and you're using Emacs, you might like [[https://github.com/jakub-stastny/rpm.backend/blob/master/.env/README.org#writing-clojure-apps-in-emacs][writing Clojure programs in Emacs]] chapter in the backend repo.
 
 ** [[./setup][Setup]]
 
-Lorem ipsum.
+If you want to actually run the app, you'll need to go through the setup first.
 
 ** [[./code][The app]]
 
