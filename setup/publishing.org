@@ -1,0 +1,39 @@
+** Publishing
+
+Tangle to a different file and load it from emacs.el
+
+=org-publish-project=
+
+Do we want a script to wrap this? We have to rename README.html to index.html.
+
+#+BEGIN_SRC elisp :tangle ../.env/elisp/publish.el :results silent
+  (require 'ox-publish)
+
+  (setq org-publish-project-alist `(
+    ("rpm.frontend"
+      :components ("rpm.frontend/documentation" "rpm.frontend/static"))
+
+    ("rpm.frontend/documentation"
+      :base-directory "~/rpm.frontend"
+      :base-extension "org"
+      :publishing-directory "~/rpm.frontend/exports/documentation"
+      :recursive t
+      :publishing-function org-html-publish-to-html
+      :headline-levels 4
+      :auto-preamble t)
+
+    ("rpm.frontend/static"
+      :base-directory "~/rpm.frontend"
+      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\"
+      :publishing-directory "~/rpm.frontend/exports/documentation"
+      :recursive t
+      :publishing-function org-publish-attachment)))
+#+END_SRC
+
+** CSS
+
+#+BEGIN_SRC css :tangle ../styles.css
+  * {
+    font-family: Helvetica;
+  }
+#+END_SRC
