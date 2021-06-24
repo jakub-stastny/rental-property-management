@@ -9,11 +9,9 @@ The only files that we do need to keep is =yarn.lock=, since it's generated and 
 
 With that said the GitHub workflow is also generated. See the chapter on [[./testing.org][testing]].
 
-#+BEGIN_SRC gitignore :tangle .gitignore
+#+BEGIN_SRC gitignore :tangle ../.gitignore
   *
   !**/*.org
-  !yarn.lock
-  !.github
 #+END_SRC
 
 By the way have you noticed that this =.gitignore= ignores itself?
@@ -22,7 +20,7 @@ By the way have you noticed that this =.gitignore= ignores itself?
 
 https://EditorConfig.org
 
-#+BEGIN_SRC editorconfig :tangle .editorconfig
+#+BEGIN_SRC editorconfig :tangle ../.editorconfig
   root = true
 
   # Unix-style newlines with a newline ending every file
@@ -37,20 +35,20 @@ https://EditorConfig.org
 
 ** Zprint
 
-#+BEGIN_SRC clojure :tangle .zprintrc
+#+BEGIN_SRC clojure :tangle ../.zprintrc
   {:style :indent-only}
 #+END_SRC
 
 ** CLJ Kondo
 
-#+BEGIN_SRC clojure :tangle .clj-kondo/config.edn :mkdirp yes
+#+BEGIN_SRC clojure :tangle ../.clj-kondo/config.edn :mkdirp yes
   {:lint-as {devcards.core/defcard cljs.core/def
             devcards.core/deftest cljs.core/def}}
 #+END_SRC
 
 ** Package.json
 
-#+BEGIN_SRC javascript :tangle package.json
+#+BEGIN_SRC javascript :tangle ../package.json
   {
     "name": "rpm",
     "version": "0.1.0",
@@ -94,7 +92,7 @@ https://EditorConfig.org
 
 * Shadow CLJS
 
-#+BEGIN_SRC clojure :tangle shadow-cljs.edn
+#+BEGIN_SRC clojure :tangle ../shadow-cljs.edn
   {:builds
   {:app {:asset-path "/js"
           :modules {:main {:init-fn app.core/main}}
