@@ -1,0 +1,15 @@
+* Welcome to the RPM frontend book!
+
+It has three parts.
+
+** [[./setup][Setup]]
+
+Lorem ipsum.
+
+** [[./code][The app]]
+
+Lorem ipsum.
+
+** [[./reference][Reference]]
+
+Lorem ipsum.
