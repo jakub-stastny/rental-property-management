@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-06-24 Thu 23:09 -->
+<!-- 2021-06-24 Thu 23:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -223,26 +223,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org33df83f">1. Setup</a>
+<li><a href="#orga83bf20">1. Setup</a>
 <ul>
-<li><a href="#orga8b234d">1.1. Git ignore</a></li>
-<li><a href="#orga86231b">1.2. Editor config</a></li>
-<li><a href="#orgf6849e7">1.3. Zprint</a></li>
-<li><a href="#orgfb21f26">1.4. CLJ Kondo</a></li>
-<li><a href="#org2cfab8a">1.5. Package.json</a></li>
+<li><a href="#orgb8d709c">1.1. Git ignore</a></li>
+<li><a href="#orgf501f76">1.2. Editor config</a></li>
+<li><a href="#org7174c89">1.3. Zprint</a></li>
+<li><a href="#org3a97ea8">1.4. CLJ Kondo</a></li>
+<li><a href="#org1e42604">1.5. Package.json</a></li>
 </ul>
 </li>
-<li><a href="#org674ffe1">2. Shadow CLJS</a></li>
+<li><a href="#org989be3e">2. Shadow CLJS</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org33df83f" class="outline-2">
-<h2 id="org33df83f"><span class="section-number-2">1</span> Setup</h2>
+<div id="outline-container-orga83bf20" class="outline-2">
+<h2 id="orga83bf20"><span class="section-number-2">1</span> Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga8b234d" class="outline-3">
-<h3 id="orga8b234d"><span class="section-number-3">1.1</span> Git ignore</h3>
+<div id="outline-container-orgb8d709c" class="outline-3">
+<h3 id="orgb8d709c"><span class="section-number-3">1.1</span> Git ignore</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Org mode files are the single source of truth. Hence we don't need to check the generated files in the source control.
@@ -268,8 +268,8 @@ By the way have you noticed that this <code>.gitignore</code> ignores itself?
 </div>
 </div>
 
-<div id="outline-container-orga86231b" class="outline-3">
-<h3 id="orga86231b"><span class="section-number-3">1.2</span> Editor config</h3>
+<div id="outline-container-orgf501f76" class="outline-3">
+<h3 id="orgf501f76"><span class="section-number-3">1.2</span> Editor config</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <a href="https://editorconfig.org">https://editorconfig.org</a>
@@ -291,8 +291,8 @@ trim_trailing_whitespace = true
 </div>
 </div>
 
-<div id="outline-container-orgf6849e7" class="outline-3">
-<h3 id="orgf6849e7"><span class="section-number-3">1.3</span> Zprint</h3>
+<div id="outline-container-org7174c89" class="outline-3">
+<h3 id="org7174c89"><span class="section-number-3">1.3</span> Zprint</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-clojure">{<span style="color: #008b8b;">:style</span> <span style="color: #008b8b;">:indent-only</span>}
@@ -301,8 +301,8 @@ trim_trailing_whitespace = true
 </div>
 </div>
 
-<div id="outline-container-orgfb21f26" class="outline-3">
-<h3 id="orgfb21f26"><span class="section-number-3">1.4</span> CLJ Kondo</h3>
+<div id="outline-container-org3a97ea8" class="outline-3">
+<h3 id="org3a97ea8"><span class="section-number-3">1.4</span> CLJ Kondo</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-clojure">{<span style="color: #008b8b;">:lint-as</span> {<span style="color: #228b22;">devcards.core</span>/defcard <span style="color: #228b22;">cljs.core</span>/def
@@ -312,8 +312,8 @@ trim_trailing_whitespace = true
 </div>
 </div>
 
-<div id="outline-container-org2cfab8a" class="outline-3">
-<h3 id="org2cfab8a"><span class="section-number-3">1.5</span> Package.json</h3>
+<div id="outline-container-org1e42604" class="outline-3">
+<h3 id="org1e42604"><span class="section-number-3">1.5</span> Package.json</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-javascript">{
@@ -361,8 +361,8 @@ trim_trailing_whitespace = true
 </div>
 </div>
 
-<div id="outline-container-org674ffe1" class="outline-2">
-<h2 id="org674ffe1"><span class="section-number-2">2</span> Shadow CLJS</h2>
+<div id="outline-container-org989be3e" class="outline-2">
+<h2 id="org989be3e"><span class="section-number-2">2</span> Shadow CLJS</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-clojure">{<span style="color: #008b8b;">:builds</span>
@@ -394,7 +394,7 @@ trim_trailing_whitespace = true
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: root</p>
-<p class="date">Created: 2021-06-24 Thu 23:09</p>
+<p class="date">Created: 2021-06-24 Thu 23:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

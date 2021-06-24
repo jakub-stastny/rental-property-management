@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-06-24 Thu 23:17 -->
+<!-- 2021-06-24 Thu 23:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -220,26 +220,17 @@
 <body>
 <div id="content">
 
-<div id="outline-container-org0950daf" class="outline-2">
-<h2 id="org0950daf"><span class="section-number-2">1</span> About</h2>
+<div id="outline-container-org7485f3b" class="outline-2">
+<h2 id="org7485f3b"><span class="section-number-2">1</span> Installation</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-Literate DevOps script to set up the current project.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd7e9b3a" class="outline-2">
-<h2 id="orgd7e9b3a"><span class="section-number-2">2</span> Installation</h2>
-<div class="outline-text-2" id="text-2">
 <p>
 In Emacs press <code>C-c C-c</code> to evaluate each code block in this section.
 </p>
 </div>
 
-<div id="outline-container-org3d49b94" class="outline-3">
-<h3 id="org3d49b94"><span class="section-number-3">2.1</span> Emacs packages</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org3655d4b" class="outline-3">
+<h3 id="org3655d4b"><span class="section-number-3">1.1</span> Emacs packages</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #a020f0;">dolist</span> (package '(clojure-mode cider))
   (<span style="color: #a020f0;">unless</span> (package-installed-p package)
@@ -251,23 +242,27 @@ In Emacs press <code>C-c C-c</code> to evaluate each code block in this section.
 </div>
 </div>
 
-<div id="outline-container-org82446b5" class="outline-2">
-<h2 id="org82446b5"><span class="section-number-2">3</span> Configuration</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgd5a7a01" class="outline-2">
+<h2 id="orgd5a7a01"><span class="section-number-2">2</span> Configuration</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 In Emacs press <code>C-c C-v t</code> to tangle all the code blocks in this file.
 </p>
 </div>
 
-<div id="outline-container-org9ac7052" class="outline-3">
-<h3 id="org9ac7052"><span class="section-number-3">3.1</span> Emacs per-project configuration</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orga60ef86" class="outline-3">
+<h3 id="orga60ef86"><span class="section-number-3">2.1</span> Emacs per-project configuration</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 We want to keep environment-specific configuration out of our <code>~/.emacs</code>.
 </p>
 
 <p>
 <a href="https://orgmode.org/worg/org-contrib/babel/languages/index.html">https://orgmode.org/worg/org-contrib/babel/languages/index.html</a> CLJS not supported directly
+</p>
+
+<p>
+The publish file is defined in <a href="./publishing.html">publishing.org</a>. I don't like this dependency though. Maybe it'd be best to autoload any file in .env/elisp/autoload, that way we don't have this coupling.
 </p>
 
 <div class="org-src-container">
@@ -278,6 +273,7 @@ We want to keep environment-specific configuration out of our <code>~/.emacs</co
 
 (add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"clojurescript"</span> . <span style="color: #8b2252;">"clojurescript-mode"</span>))
 (add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"edn"</span> . <span style="color: #8b2252;">"clojure-mode"</span>))
+(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"babashka"</span> . <span style="color: #8b2252;">"clojure-mode"</span>))
 
 (load <span style="color: #8b2252;">"publish"</span>)
 <span style="color: #b22222;">;</span><span style="color: #b22222;">(load-theme 'tsdh-light)</span>
@@ -285,9 +281,9 @@ We want to keep environment-specific configuration out of our <code>~/.emacs</co
 </div>
 </div>
 
-<div id="outline-container-org21162dd" class="outline-4">
-<h4 id="org21162dd"><span class="section-number-4">3.1.1</span> Links</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<div id="outline-container-org214b5c4" class="outline-4">
+<h4 id="org214b5c4"><span class="section-number-4">2.1.1</span> Links</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el">~/zsh/environments/elisp/literate-programming.el</a></li>
 </ul>
@@ -295,52 +291,9 @@ We want to keep environment-specific configuration out of our <code>~/.emacs</co
 </div>
 </div>
 
-
-<div id="outline-container-org5a2f13a" class="outline-3">
-<h3 id="org5a2f13a"><span class="section-number-3">3.2</span> Publishing</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-Tangle to a different file and load it from emacs.el
-</p>
-
-<p>
-<code>org-publish-project</code>
-</p>
-
-<p>
-Do we want a script to wrap this? We have to rename README.html to index.html.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-elisp">(<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
-
-(<span style="color: #a020f0;">setq</span> org-publish-project-alist `(
-  (<span style="color: #8b2252;">"rpm.frontend"</span>
-    <span style="color: #483d8b;">:components</span> (<span style="color: #8b2252;">"rpm.frontend/documentation"</span> <span style="color: #8b2252;">"rpm.frontend/static"</span>))
-
-  (<span style="color: #8b2252;">"rpm.frontend/documentation"</span>
-    <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/rpm.frontend"</span>
-    <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"org"</span>
-    <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/rpm.frontend/exports/documentation"</span>
-    <span style="color: #483d8b;">:recursive</span> t
-    <span style="color: #483d8b;">:publishing-function</span> org-html-publish-to-html
-    <span style="color: #483d8b;">:headline-levels</span> 4
-    <span style="color: #483d8b;">:auto-preamble</span> t)
-
-  (<span style="color: #8b2252;">"rpm.frontend/static"</span>
-    <span style="color: #483d8b;">:base-directory</span> <span style="color: #8b2252;">"~/rpm.frontend"</span>
-    <span style="color: #483d8b;">:base-extension</span> <span style="color: #8b2252;">"css</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">js</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">png</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">jpg</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">gif</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">pdf\\"</span>
-    <span style="color: #483d8b;">:publishing-directory</span> <span style="color: #8b2252;">"~/rpm.frontend/exports/documentation"</span>
-    <span style="color: #483d8b;">:recursive</span> t
-    <span style="color: #483d8b;">:publishing-function</span> org-publish-attachment)))
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org3859c1a" class="outline-3">
-<h3 id="org3859c1a"><span class="section-number-3">3.3</span> ZSH per-project configuration</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org126d53c" class="outline-3">
+<h3 id="org126d53c"><span class="section-number-3">2.2</span> ZSH per-project configuration</h3>
+<div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-shell">load ~/.zsh/environments/helpers.zsh &amp;&amp; save-function-list
 load ~/.zsh/environments/basic.zsh
@@ -376,9 +329,9 @@ report-custom-functions
 </div>
 </div>
 
-<div id="outline-container-org40002f3" class="outline-4">
-<h4 id="org40002f3"><span class="section-number-4">3.3.1</span> Links</h4>
-<div class="outline-text-4" id="text-3-3-1">
+<div id="outline-container-org9fbe7d9" class="outline-4">
+<h4 id="org9fbe7d9"><span class="section-number-4">2.2.1</span> Links</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/helpers.zsh">~/zsh/environments/helpers.zsh</a></li>
 <li>Dotfiles: <a href="https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/basic.zsh">~/zsh/environments/basic.zsh</a></li>
@@ -391,7 +344,7 @@ report-custom-functions
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: root</p>
-<p class="date">Created: 2021-06-24 Thu 23:17</p>
+<p class="date">Created: 2021-06-24 Thu 23:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
