@@ -8,17 +8,23 @@ In Emacs press =C-c C-c= to evaluate each code block in this section.
 ** Emacs packages
 
 #+BEGIN_SRC elisp :results silent
-  (dolist (package '(clojure-mode cider))
+  (dolist (package '(clojure-mode cider lispy lispyville))
     (unless (package-installed-p package)
       (message "~ Installing %s." package)
       (package-install package)))
 #+END_SRC
 
 * Configuration
+  :PROPERTIES:
+  :project-root: ~/rpm/.env/
+  :END:
 
 In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
 
 ** Emacs per-project configuration
+  :PROPERTIES:
+  :header-args: :tangle (concat (org-entry-get nil "project-root" t) "emacs.el")
+  :END:
 
 We want to keep environment-specific configuration out of our =~/.emacs=.
 
@@ -28,34 +34,39 @@ The publish file is defined in [[./publishing.org][publishing.org]]. I don't lik
 
 https://www.emacswiki.org/emacs/GenericMode
 
-#+BEGIN_SRC elisp :tangle ../.env/emacs.el
-        (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
-        (add-to-list 'load-path (expand-file-name "~/rpm.frontend/.env/elisp"))
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
+  (add-to-list 'load-path (expand-file-name "<<ROOT>>/.env/elisp/autoload"))
+
+  (require 'generic-x)
+
+  (define-generic-mode
+    'gitignore-mode
+    '("#") '() '() '("^\\.gitignore$") nil
+    "A mode for .gitignore files")
+
+  (define-generic-mode
+    'editorconfig-mode
+    '("#")
+    '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
+    '() '("^\\.editorconfig$") nil
+    "A mode for .editorconfig files")
 
 
-        (require 'generic-x) ;; we need this
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
+  (load "literate-programming")
 
-        (define-generic-mode
-          'gitignore-mode
-          '("#") '() '() '("^\\.gitignore$") nil
-          "A mode for .gitignore files")
+  (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
+  (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
+  (add-to-list 'org-src-lang-modes '("babashka" . "clojure"))
+  (add-to-list 'org-src-lang-modes '("json" . "javascript"))
 
-        (define-generic-mode
-          'editorconfig-mode
-          '("#")
-          '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
-          '() '("^\\.editorconfig$") nil
-          "A mode for .editorconfig files")
-
-        (load "literate-programming")
-
-        (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
-        (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
-        (add-to-list 'org-src-lang-modes '("babashka" . "clojure"))
-        (add-to-list 'org-src-lang-modes '("json" . "javascript"))
-
-        (load "publish")
-        ;(load-theme 'tsdh-light)
+  (load "publish")
+  ;(load-theme 'tsdh-light)
 #+END_SRC
 
 *** Links
@@ -63,8 +74,11 @@ https://www.emacswiki.org/emacs/GenericMode
 - Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el][~/zsh/environments/elisp/literate-programming.el]]
 
 ** ZSH per-project configuration
+  :PROPERTIES:
+  :header-args: :tangle (concat (org-entry-get nil "project-root" t) "zsh.zsh")
+  :END:
 
-#+BEGIN_SRC shell :tangle ../.env/zsh.zsh
+#+BEGIN_SRC shell
   load ~/.zsh/environments/helpers.zsh && save-function-list
   load ~/.zsh/environments/basic.zsh
   load ~/.zsh/environments/emacs.zsh
