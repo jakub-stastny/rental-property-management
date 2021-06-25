@@ -1,3 +1,5 @@
+#+SETUPFILE: ../setupfile.org
+
 ** Publishing
 
 Tangle to a different file and load it from emacs.el

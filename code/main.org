@@ -1,15 +1,10 @@
-#+OPTIONS: toc:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
-
-* About
-
-- GitHub doesn't recognise =clojurescript= code blocks, that's why I'm using =clojure= there.
+#+SETUPFILE: ../setupfile.org
 
 * Render the app
 
 This is glue code for our app to actually render. As such, I'm leaving it out of the =app.rpm= namespace.
 
-#+BEGIN_SRC clojure :tangle core.cljs :mkdirp yes
+#+BEGIN_SRC clojurescript :tangle core.cljs :mkdirp yes
   (ns app.core
     "This namespace contains your application and is the entrypoint for 'yarn start'."
     (:require [reagent.core :as r]
@@ -32,7 +27,7 @@ This is the top-level application and the entry-point for the glue code.
 
 All the other components are defined in the =app.rpm.components= namespace.
 
-#+BEGIN_SRC clojure :tangle rpm/main.cljs :mkdirp yes
+#+BEGIN_SRC clojurescript :tangle rpm/main.cljs :mkdirp yes
   (ns app.rpm.main "The main Reagent app."
     (:require [app.rpm.components.header :refer [header]])
     (:require [app.rpm.components.app :refer [app]])

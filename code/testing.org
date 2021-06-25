@@ -1,5 +1,4 @@
-#+OPTIONS: toc:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="/rpm.frontend/styles.css"/>
+#+SETUPFILE: ../setupfile.org
 
 * End-to-end tests
 
