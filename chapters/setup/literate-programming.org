@@ -1,5 +1,5 @@
 #+TITLE: Literate programming
-#+SETUPFILE: ../../setupfile.org
+#+SETUPFILE: ../setupfile.org
 
 =C-c '= edit block in a separate buffer.
 

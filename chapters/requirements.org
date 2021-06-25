@@ -1,5 +1,5 @@
 #+TITLE: RPM requirements
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: setupfile.org
 
 * Requirements
 ** Customer journey

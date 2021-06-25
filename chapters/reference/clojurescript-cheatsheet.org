@@ -1,5 +1,5 @@
 #+TITLE: ClojureScript cheatsheet
-#+SETUPFILE: ../../setupfile.org
+#+SETUPFILE: ../setupfile.org
 
 * Shadow CLJS
 ** Features

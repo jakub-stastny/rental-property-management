@@ -1,5 +1,5 @@
 #+TITLE: Helpers
-#+SETUPFILE: ../../setupfile.org
+#+SETUPFILE: ../setupfile.org
 
 * Form helpers
 
