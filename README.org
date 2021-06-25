@@ -1,5 +1,3 @@
-#+TITLE: RPM
-
 * About
 
 [[https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml][https://github.com/jakub-stastny/rpm.frontend/actions/workflows/test.yml/badge.svg]]
@@ -8,3 +6,4 @@ This is the front-end for the rental property management system.
 
 I'm using literate programming, so the code is exported from chapters written in Orgmode. If it's confusing, feel free to check out the [[https://github.com/jakub-stastny/rpm.frontend/tree/generated-code][generated code]], but to get the bigger picture, I suggest you stay on this branch, where all the documentation lives.
 
+[[https://jakub-stastny.github.io/rpm.frontend][Start reading]]!
