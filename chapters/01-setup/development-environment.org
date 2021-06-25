@@ -16,14 +16,14 @@ In Emacs press =C-c C-c= to evaluate each code block in this section.
 
 * Configuration
   :PROPERTIES:
-  :project-root: ~/rpm/.env/
+  :env-root: ~/rpm/.env/
   :END:
 
 In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
 
 ** Emacs per-project configuration
   :PROPERTIES:
-  :header-args: :tangle (concat (org-entry-get nil "project-root" t) "emacs.el")
+  :header-args: :tangle (concat (org-entry-get nil "env-root" t) "emacs.el")
   :END:
 
 We want to keep environment-specific configuration out of our =~/.emacs=.
@@ -34,9 +34,26 @@ The publish file is defined in [[./publishing.org][publishing.org]]. I don't lik
 
 https://www.emacswiki.org/emacs/GenericMode
 
+;file-name-sans-extension
+
+https://www.emacswiki.org/emacs/LoadingLispFiles
+
 #+BEGIN_SRC emacs-lisp
+  (setq project-root-path (file-name-directory (buffer-file-name)))
+  (defun project-root-path (path) (concat project-root-path path))
+  (setq setupfile-path (concat project-root-path "setupfile.org"))
+
+  (setq backend-root-path (file-name-directory (buffer-file-name)))
+  (defun backend-root-path (path) (concat project-root-path "backend/" path))
+
+  (setq frontend-root-path (file-name-directory (buffer-file-name)))
+  (defun frontend-root-path (path) (concat project-root-path "frontend/" path))
+
+  (setq elisp-autoload-dir (concat (file-name-directory (buffer-file-name)) "elisp/autoload"))
+  (require 'load-directory)
+  (load-directory elisp-autoload-dir)
+
   (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
-  (add-to-list 'load-path (expand-file-name "<<ROOT>>/.env/elisp/autoload"))
 
   (require 'generic-x)
 
@@ -53,12 +70,12 @@ https://www.emacswiki.org/emacs/GenericMode
     "A mode for .editorconfig files")
 
 
-(org-babel-do-load-languages 'org-babel-load-languages
-    '(
-        (shell . t)
-    )
-)
+  (org-babel-do-load-languages 'org-babel-load-languages '(
+    (shell . t)))
   (load "literate-programming")
+
+  (defun mkprologue (buffer-name)
+    (my/literate/mkprologue "https://jakub-stastny.github.io/rental-property-management/" buffer-name))
 
   (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
   (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
@@ -75,7 +92,7 @@ https://www.emacswiki.org/emacs/GenericMode
 
 ** ZSH per-project configuration
   :PROPERTIES:
-  :header-args: :tangle (concat (org-entry-get nil "project-root" t) "zsh.zsh")
+  :header-args: :tangle (concat (org-entry-get nil "env-root" t) "zsh.zsh")
   :END:
 
 #+BEGIN_SRC shell
