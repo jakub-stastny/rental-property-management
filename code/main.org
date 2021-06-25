@@ -1,3 +1,4 @@
+#+TITLE: Main
 #+SETUPFILE: ../setupfile.org
 
 * Render the app

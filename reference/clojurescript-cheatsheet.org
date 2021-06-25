@@ -1,3 +1,4 @@
+#+TITLE: ClojureScript cheatsheet
 #+SETUPFILE: ../setupfile.org
 
 * Shadow CLJS

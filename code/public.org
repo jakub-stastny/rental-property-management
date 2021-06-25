@@ -1,28 +1,29 @@
+#+TITLE: Public
 #+SETUPFILE: ../setupfile.org
 
-* A
+* HTML index
 
 #+BEGIN_SRC html :tangle public/index.html :mkdirp yes
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <title>rpm</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" href="/css/style.css" type="text/css">
+      <title>rpm</title>
+    </head>
+    <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <div id="app"></div>
+      <div id="app"></div>
 
-    <script src="/js/main.js" type="text/javascript"></script>
-  </body>
-</html>
+      <script src="/js/main.js" type="text/javascript"></script>
+    </body>
+  </html>
 #+END_SRC
 
-* B
+* Site CSS
 
 #+BEGIN_SRC css :tangle public/css/style.css :mkdirp yes
 #+END_SRC
