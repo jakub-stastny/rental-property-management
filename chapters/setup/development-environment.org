@@ -1,5 +1,5 @@
 #+TITLE: Development environment
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * Installation
 
@@ -26,18 +26,36 @@ https://orgmode.org/worg/org-contrib/babel/languages/index.html CLJS not support
 
 The publish file is defined in [[./publishing.org][publishing.org]]. I don't like this dependency though. Maybe it'd be best to autoload any file in .env/elisp/autoload, that way we don't have this coupling.
 
+https://www.emacswiki.org/emacs/GenericMode
+
 #+BEGIN_SRC elisp :tangle ../.env/emacs.el
-  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
-  (add-to-list 'load-path (expand-file-name "~/rpm.frontend/.env/elisp"))
+        (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
+        (add-to-list 'load-path (expand-file-name "~/rpm.frontend/.env/elisp"))
 
-  (load "literate-programming")
 
-  (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript-mode"))
-  (add-to-list 'org-src-lang-modes '("edn" . "clojure-mode"))
-  (add-to-list 'org-src-lang-modes '("babashka" . "clojure-mode"))
+        (require 'generic-x) ;; we need this
 
-  (load "publish")
-  ;(load-theme 'tsdh-light)
+        (define-generic-mode
+          'gitignore-mode
+          '("#") '() '() '("^\\.gitignore$") nil
+          "A mode for .gitignore files")
+
+        (define-generic-mode
+          'editorconfig-mode
+          '("#")
+          '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
+          '() '("^\\.editorconfig$") nil
+          "A mode for .editorconfig files")
+
+        (load "literate-programming")
+
+        (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
+        (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
+        (add-to-list 'org-src-lang-modes '("babashka" . "clojure"))
+        (add-to-list 'org-src-lang-modes '("json" . "javascript"))
+
+        (load "publish")
+        ;(load-theme 'tsdh-light)
 #+END_SRC
 
 *** Links

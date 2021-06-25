@@ -1,5 +1,5 @@
 #+TITLE: RPM components
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * Layout
 ** Main header

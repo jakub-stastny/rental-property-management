@@ -1,5 +1,5 @@
 #+TITLE: RPM reference
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * Reference
 

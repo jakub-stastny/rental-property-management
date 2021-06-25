@@ -1,5 +1,5 @@
 #+TITLE: RPM code
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * The app
 

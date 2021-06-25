@@ -1,5 +1,5 @@
 #+TITLE: RPM setup
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * Setup
 ** Git ignore
@@ -10,9 +10,7 @@ The only files that we do need to keep is =yarn.lock=, since it's generated and 
 
 With that said the GitHub workflow is also generated. See the chapter on [[./testing.org][testing]].
 
-#+BEGIN_SRC gitignore :tangle ../.gitignore
-  *
-  !**/*.org
+#+BEGIN_SRC gitignore :tangle ../../.gitignore
 #+END_SRC
 
 By the way have you noticed that this =.gitignore= ignores itself?
@@ -49,7 +47,7 @@ https://EditorConfig.org
 
 ** Package.json
 
-#+BEGIN_SRC javascript :tangle ../package.json
+#+BEGIN_SRC json :tangle ../package.json
   {
     "name": "rpm",
     "version": "0.1.0",
@@ -95,7 +93,7 @@ https://EditorConfig.org
 
 #+BEGIN_SRC edn :tangle ../shadow-cljs.edn
   {:builds
-  {:app {:asset-path "/js"
+   {:app {:asset-path "/js"
           :modules {:main {:init-fn app.core/main}}
           :output-dir "public/js"
           :target :browser}

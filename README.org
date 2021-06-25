@@ -1,5 +1,5 @@
 #+TITLE: RPM
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: setupfile.org
 
 * About
 

@@ -1,5 +1,5 @@
 #+TITLE: Public
-#+SETUPFILE: ../setupfile.org
+#+SETUPFILE: ../../setupfile.org
 
 * HTML index
 
