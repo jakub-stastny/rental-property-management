@@ -1,0 +1,51 @@
+#+TITLE: Rental property management: main module
+#+AUTHOR: Jakub Šťastný
+
+* Design decisions
+** Separation of pure and impure functions
+
+In a normal web app (such as this one), a lot of the functionality inherently deals with the database and is impure by definition. Still let's try to use pure functions as much as possible.
+
+** Testing
+*** Unit testing
+*** Integration testing
+
+Hit the endpoint directly. Maybe worth doing from Ruby/rSpec?
+
+** Data format for back-end/front-end communication
+*** TODO Decide between JSON and EDN
+
+I might go with EDN here. Let's see whether I'll decide to go with Clojurescript or Elm. Clojurescript will be prefered if there will be any sharing of code between the back-end and the front-end.
+
+** Logging
+
+Let's log to =STDOUT=, as recommended by the [[https://12factor.net][12-factor app methodology]]. It will run in Docker anyway.
+
+* Dependencies
+
+#+BEGIN_SRC clojure :tangle deps.edn
+  {:paths ["src"]
+   :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+          com.github.seancorfield/next.jdbc {:mvn/version "1.1.646"}}
+
+   :aliases {:test {:extra-paths ["test"]
+                    :extra-deps {com.github.seancorfield/expectations {:mvn/version "2.0.0-alpha2"}
+                                 io.github.cognitect-labs/test-runner
+                                  {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                   :sha "705ad25bbf0228b1c38d0244a36001c2987d7337"}}
+                    :main-opts ["-m" "cognitect.test-runner"]
+                    :exec-fn cognitect.test-runner.api/test}}}
+#+END_SRC
+
+* Main
+
+#+BEGIN_SRC clojure :tangle rpm/main.clj :mkdirp yes
+  (ns rpm.main)
+
+  (defn -main [& args]
+    (println "Here"))
+#+END_SRC
+
+* Next steps
+
+- Read the [[./db.org][database configuration]] chapter.

@@ -1,0 +1,24 @@
+#+TITLE: Rental property management
+#+AUTHOR: Jakub Šťastný
+
+* Imports
+
+#+BEGIN_SRC clojure :tangle ../test/rpm/main_test.clj :mkdirp yes
+  (ns rpm.main-test
+    (:require [clojure.spec.alpha :as s]
+              [clojure.test :refer [deftest is]]
+              [expectations.clojure.test
+              :refer [defexpect expect expecting
+                      approximately between between' functionally
+                      side-effects]]))
+#+END_SRC
+
+* Tests
+
+Just an example for now.
+
+#+BEGIN_SRC clojure :tangle ../test/rpm/main_test.clj :mkdirp yes
+  (defexpect equality
+    (expect 1 (* 1 1))
+    (expect "foo" (str "f" "oo")))
+#+END_SRC
