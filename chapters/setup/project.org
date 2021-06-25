@@ -11,6 +11,8 @@ The only files that we do need to keep is =yarn.lock=, since it's generated and 
 With that said the GitHub workflow is also generated. See the chapter on [[./testing.org][testing]].
 
 #+BEGIN_SRC gitignore :tangle ../../.gitignore
+  *
+  !chapters/**/*.org
 #+END_SRC
 
 By the way have you noticed that this =.gitignore= ignores itself?
