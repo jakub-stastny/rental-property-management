@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-06-24 Thu 23:57 -->
+<!-- 2021-06-25 Fri 00:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>RPM setup</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="root" />
 <style type="text/css">
@@ -219,23 +219,7 @@
 </head>
 <body>
 <div id="content">
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orga83bf20">1. Setup</a>
-<ul>
-<li><a href="#orgb8d709c">1.1. Git ignore</a></li>
-<li><a href="#orgf501f76">1.2. Editor config</a></li>
-<li><a href="#org7174c89">1.3. Zprint</a></li>
-<li><a href="#org3a97ea8">1.4. CLJ Kondo</a></li>
-<li><a href="#org1e42604">1.5. Package.json</a></li>
-</ul>
-</li>
-<li><a href="#org989be3e">2. Shadow CLJS</a></li>
-</ul>
-</div>
-</div>
+<h1 class="title">RPM setup</h1>
 
 <div id="outline-container-orga83bf20" class="outline-2">
 <h2 id="orga83bf20"><span class="section-number-2">1</span> Setup</h2>
@@ -295,7 +279,7 @@ trim_trailing_whitespace = true
 <h3 id="org7174c89"><span class="section-number-3">1.3</span> Zprint</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-clojure">{<span style="color: #008b8b;">:style</span> <span style="color: #008b8b;">:indent-only</span>}
+<pre class="src src-edn">{:style :indent-only}
 </pre>
 </div>
 </div>
@@ -305,8 +289,8 @@ trim_trailing_whitespace = true
 <h3 id="org3a97ea8"><span class="section-number-3">1.4</span> CLJ Kondo</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-clojure">{<span style="color: #008b8b;">:lint-as</span> {<span style="color: #228b22;">devcards.core</span>/defcard <span style="color: #228b22;">cljs.core</span>/def
-          <span style="color: #228b22;">devcards.core</span>/deftest <span style="color: #228b22;">cljs.core</span>/def}}
+<pre class="src src-edn">{:lint-as {devcards.core/defcard cljs.core/def
+          devcards.core/deftest cljs.core/def}}
 </pre>
 </div>
 </div>
@@ -365,28 +349,28 @@ trim_trailing_whitespace = true
 <h2 id="org989be3e"><span class="section-number-2">2</span> Shadow CLJS</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-clojure">{<span style="color: #008b8b;">:builds</span>
-{<span style="color: #008b8b;">:app</span> {<span style="color: #008b8b;">:asset-path</span> <span style="color: #8b2252;">"/js"</span>
-        <span style="color: #008b8b;">:modules</span> {<span style="color: #008b8b;">:main</span> {<span style="color: #008b8b;">:init-fn</span> <span style="color: #228b22;">app.core</span>/main}}
-        <span style="color: #008b8b;">:output-dir</span> <span style="color: #8b2252;">"public/js"</span>
-        <span style="color: #008b8b;">:target</span> <span style="color: #008b8b;">:browser</span>}
-  <span style="color: #008b8b;">:cards</span> {<span style="color: #008b8b;">:asset-path</span> <span style="color: #8b2252;">"/js"</span>
-          <span style="color: #008b8b;">:modules</span> {<span style="color: #008b8b;">:main</span> {<span style="color: #008b8b;">:init-fn</span> <span style="color: #228b22;">app.cards</span>/main}}
-          <span style="color: #008b8b;">:compiler-options</span> {<span style="color: #008b8b;">:devcards</span> <span style="color: #008b8b;">true</span>}
-          <span style="color: #008b8b;">:output-dir</span> <span style="color: #8b2252;">"public/js"</span>
-          <span style="color: #008b8b;">:target</span> <span style="color: #008b8b;">:browser</span>}
-  <span style="color: #008b8b;">:test</span> {<span style="color: #008b8b;">:ns-regexp</span> <span style="color: #8b2252;">"app.cards"</span>
-        <span style="color: #008b8b;">:output-to</span> <span style="color: #8b2252;">"out/test.js"</span>
-        <span style="color: #008b8b;">:target</span> <span style="color: #008b8b;">:node-test</span>}
-  <span style="color: #008b8b;">:e2e</span> {<span style="color: #008b8b;">:ns-regexp</span> <span style="color: #8b2252;">"e2e.*"</span>
-        <span style="color: #008b8b;">:output-to</span> <span style="color: #8b2252;">"out/e2e.js"</span>
-        <span style="color: #008b8b;">:target</span> <span style="color: #008b8b;">:node-test</span>}}
-<span style="color: #008b8b;">:dependencies</span> [[reagent <span style="color: #8b2252;">"0.8.1"</span>]
-                [devcards <span style="color: #8b2252;">"0.2.6"</span>]]
-<span style="color: #008b8b;">:jvm-opts</span> [<span style="color: #8b2252;">"-Xmx600m"</span>] <span style="color: #b22222;">; Give JVM more memory.</span>
-<span style="color: #008b8b;">:dev-http</span> {8000 <span style="color: #8b2252;">"public"</span>}
-<span style="color: #008b8b;">:nrepl</span> {<span style="color: #008b8b;">:port</span> 3333}
-<span style="color: #008b8b;">:source-paths</span> [<span style="color: #8b2252;">"src"</span>]}
+<pre class="src src-edn">{:builds
+{:app {:asset-path "/js"
+        :modules {:main {:init-fn app.core/main}}
+        :output-dir "public/js"
+        :target :browser}
+  :cards {:asset-path "/js"
+          :modules {:main {:init-fn app.cards/main}}
+          :compiler-options {:devcards true}
+          :output-dir "public/js"
+          :target :browser}
+  :test {:ns-regexp "app.cards"
+        :output-to "out/test.js"
+        :target :node-test}
+  :e2e {:ns-regexp "e2e.*"
+        :output-to "out/e2e.js"
+        :target :node-test}}
+:dependencies [[reagent "0.8.1"]
+                [devcards "0.2.6"]]
+:jvm-opts ["-Xmx600m"] ; Give JVM more memory.
+:dev-http {8000 "public"}
+:nrepl {:port 3333}
+:source-paths ["src"]}
 </pre>
 </div>
 </div>
@@ -394,7 +378,7 @@ trim_trailing_whitespace = true
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: root</p>
-<p class="date">Created: 2021-06-24 Thu 23:57</p>
+<p class="date">Created: 2021-06-25 Fri 00:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

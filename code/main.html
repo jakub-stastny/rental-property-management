@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-06-24 Thu 23:57 -->
+<!-- 2021-06-25 Fri 00:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Main</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="root" />
 <style type="text/css">
@@ -219,36 +219,28 @@
 </head>
 <body>
 <div id="content">
-
-<div id="outline-container-org2e0a727" class="outline-2">
-<h2 id="org2e0a727"><span class="section-number-2">1</span> About</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>GitHub doesn't recognise <code>clojurescript</code> code blocks, that's why I'm using <code>clojure</code> there.</li>
-</ul>
-</div>
-</div>
+<h1 class="title">Main</h1>
 
 <div id="outline-container-org3a33b52" class="outline-2">
-<h2 id="org3a33b52"><span class="section-number-2">2</span> Render the app</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org3a33b52"><span class="section-number-2">1</span> Render the app</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 This is glue code for our app to actually render. As such, I'm leaving it out of the <code>app.rpm</code> namespace.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.core</span>
-  <span style="color: #8b2252;">"This namespace contains your application and is the entrypoint for 'yarn start'."</span>
-  (<span style="color: #008b8b;">:require</span> [reagent.core <span style="color: #008b8b;">:as</span> r]
-            [app.rpm.main <span style="color: #008b8b;">:refer</span> [spa-app]]))
+<pre class="src src-clojurescript">(ns app.core
+  "This namespace contains your application and is the entrypoint for 'yarn start'."
+  (:require [reagent.core :as r]
+            [app.rpm.main :refer [spa-app]]))
 
-(<span style="color: #a020f0;">defn</span> ^<span style="color: #008b8b;">:</span><span style="color: #228b22;">dev</span><span style="color: #000000; background-color: #ffffff;">/</span><span style="color: #008b8b;">after-load</span> <span style="color: #0000ff;">render</span>
-  <span style="color: #8b2252;">"Render the toplevel component for this app."</span>
+(defn ^:dev/after-load render
+  "Render the toplevel component for this app."
   []
-  (<span style="color: #228b22;">r</span>/render [spa-app] (.getElementById <span style="color: #228b22;">js</span>/document <span style="color: #8b2252;">"app"</span>)))
+  (r/render [spa-app] (.getElementById js/document "app")))
 
-(<span style="color: #a020f0;">defn</span> ^<span style="color: #008b8b;">:export</span> <span style="color: #0000ff;">main</span>
-  <span style="color: #8b2252;">"Run application startup logic."</span>
+(defn ^:export main
+  "Run application startup logic."
   []
   (render))
 </pre>
@@ -257,8 +249,8 @@ This is glue code for our app to actually render. As such, I'm leaving it out of
 </div>
 
 <div id="outline-container-orgb631c49" class="outline-2">
-<h2 id="orgb631c49"><span class="section-number-2">3</span> Main</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgb631c49"><span class="section-number-2">2</span> Main</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 This is the top-level application and the entry-point for the glue code.
 </p>
@@ -268,15 +260,15 @@ All the other components are defined in the <code>app.rpm.components</code> name
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure">(<span style="color: #a020f0;">ns</span> <span style="color: #228b22;">app.rpm.main</span> <span style="color: #8b2252;">"The main Reagent app."</span>
-  (<span style="color: #008b8b;">:require</span> [app.rpm.components.header <span style="color: #008b8b;">:refer</span> [header]])
-  (<span style="color: #008b8b;">:require</span> [app.rpm.components.app <span style="color: #008b8b;">:refer</span> [app]])
-  (<span style="color: #008b8b;">:require</span> [app.rpm.components.footer <span style="color: #008b8b;">:refer</span> [footer]]))
+<pre class="src src-clojurescript">(ns app.rpm.main "The main Reagent app."
+  (:require [app.rpm.components.header :refer [header]])
+  (:require [app.rpm.components.app :refer [app]])
+  (:require [app.rpm.components.footer :refer [footer]]))
 
-(<span style="color: #a020f0;">defn</span> <span style="color: #0000ff;">spa-app</span>
-  <span style="color: #8b2252;">"The main Reagent app."</span>
+(defn spa-app
+  "The main Reagent app."
   []
-  [<span style="color: #008b8b;">:&lt;&gt;</span>
+  [:&lt;&gt;
    [header][app][footer]])
 </pre>
 </div>
@@ -284,15 +276,15 @@ All the other components are defined in the <code>app.rpm.components</code> name
 </div>
 
 <div id="outline-container-orgc103cfc" class="outline-2">
-<h2 id="orgc103cfc"><span class="section-number-2">4</span> Next steps</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgc103cfc"><span class="section-number-2">3</span> Next steps</h2>
+<div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-org233f80f" class="outline-3">
-<h3 id="org233f80f"><span class="section-number-3">4.1</span> <span class="todo TODO">TODO</span> Implement M17n using <a href="https://github.com/ptaoussanis/tempura">tempura</a></h3>
+<h3 id="org233f80f"><span class="section-number-3">3.1</span> <span class="todo TODO">TODO</span> Implement M17n using <a href="https://github.com/ptaoussanis/tempura">tempura</a></h3>
 </div>
 <div id="outline-container-org1c5724a" class="outline-3">
-<h3 id="org1c5724a"><span class="section-number-3">4.2</span> <span class="todo TODO">TODO</span> Implement routing using <a href="https://github.com/metosin/reitit">reitit</a></h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org1c5724a"><span class="section-number-3">3.2</span> <span class="todo TODO">TODO</span> Implement routing using <a href="https://github.com/metosin/reitit">reitit</a></h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 There are examples in the examples directory.
 </p>
@@ -300,13 +292,13 @@ There are examples in the examples directory.
 </div>
 
 <div id="outline-container-org2906677" class="outline-3">
-<h3 id="org2906677"><span class="section-number-3">4.3</span> <span class="todo TODO">TODO</span> Add <a href="https://lilac.town/writing/modern-react-in-cljs-error-boundaries/">error boundaries</a></h3>
+<h3 id="org2906677"><span class="section-number-3">3.3</span> <span class="todo TODO">TODO</span> Add <a href="https://lilac.town/writing/modern-react-in-cljs-error-boundaries/">error boundaries</a></h3>
 </div>
 </div>
 
 <div id="outline-container-org44e3c10" class="outline-2">
-<h2 id="org44e3c10"><span class="section-number-2">5</span> Keep reading</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org44e3c10"><span class="section-number-2">4</span> Keep reading</h2>
+<div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>Chapter on <a href="./components.html">components</a>.</li>
 </ul>
@@ -315,7 +307,7 @@ There are examples in the examples directory.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: root</p>
-<p class="date">Created: 2021-06-24 Thu 23:57</p>
+<p class="date">Created: 2021-06-25 Fri 00:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
