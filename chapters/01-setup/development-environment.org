@@ -16,14 +16,14 @@ In Emacs press =C-c C-c= to evaluate each code block in this section.
 
 * Configuration
   :PROPERTIES:
-  :env-root: ~/rpm/.env/
+  :project-root: ~/rpm
   :END:
 
 In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
 
 ** Emacs per-project configuration
   :PROPERTIES:
-  :header-args: :tangle (concat (org-entry-get nil "env-root" t) "emacs.el")
+  :header-args: :tangle (concat (org-entry-get nil "project-root" t) ".env/emacs.el")
   :END:
 
 We want to keep environment-specific configuration out of our =~/.emacs=.
@@ -38,23 +38,29 @@ https://www.emacswiki.org/emacs/GenericMode
 
 https://www.emacswiki.org/emacs/LoadingLispFiles
 
-#+BEGIN_SRC emacs-lisp
-  (setq project-root-path (file-name-directory (buffer-file-name)))
+*** Path helpers for Orgmode
+
+#+begin_src emacs-lisp :noweb yes
+  (setq project-root-path "<<project-root>>")
   (defun project-root-path (path) (concat project-root-path path))
   (setq setupfile-path (concat project-root-path "setupfile.org"))
 
   (setq backend-root-path (file-name-directory (buffer-file-name)))
   (defun backend-root-path (path) (concat project-root-path "backend/" path))
 
+  (setq backend-src-path (concat backend-root-path "src/rpm"))
+  (defun backend-src-path (path) (concat project-src-path path))
+
+  (setq backend-test-path (concat backend-root-path "test/rpm"))
+  (defun backend-test-path (path) (concat project-test-path path))
+
   (setq frontend-root-path (file-name-directory (buffer-file-name)))
   (defun frontend-root-path (path) (concat project-root-path "frontend/" path))
+#+end_src
 
-  (setq elisp-autoload-dir (concat (file-name-directory (buffer-file-name)) "elisp/autoload"))
-  (require 'load-directory)
-  (load-directory elisp-autoload-dir)
+*** Major modes
 
-  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
-
+#+begin_src emacs-lisp
   (require 'generic-x)
 
   (define-generic-mode
@@ -68,31 +74,50 @@ https://www.emacswiki.org/emacs/LoadingLispFiles
     '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
     '() '("^\\.editorconfig$") nil
     "A mode for .editorconfig files")
+#+end_src
 
+*** Autoloaded files
 
-  (org-babel-do-load-languages 'org-babel-load-languages '(
-    (shell . t)))
-  (load "literate-programming")
+#+BEGIN_SRC emacs-lisp
+  (setq elisp-autoload-dir (concat (file-name-directory (buffer-file-name)) "elisp/autoload"))
+  (require 'load-directory)
+  (load-directory elisp-autoload-dir)
+#+END_SRC
+
+*** Rest
+
+#+begin_src emacs-lisp
+  (add-to-list 'load-path (expand-file-name "~/.zsh/environments/elisp"))
 
   (defun mkprologue (buffer-name)
     (my/literate/mkprologue "https://jakub-stastny.github.io/rental-property-management/" buffer-name))
+
+  ;(load-theme 'tsdh-light)
+#+end_src
+
+*** Orgmode source blocks
+
+#+begin_src emacs-lisp
+  (org-babel-do-load-languages 'org-babel-load-languages '(
+    (shell . t)))
 
   (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
   (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
   (add-to-list 'org-src-lang-modes '("babashka" . "clojure"))
   (add-to-list 'org-src-lang-modes '("json" . "javascript"))
+#+end_src
 
-  (load "publish")
-  ;(load-theme 'tsdh-light)
-#+END_SRC
+*** My setup
 
-*** Links
+Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el][~/zsh/environments/elisp/literate-programming.el]]
 
-- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/elisp/literate-programming.el][~/zsh/environments/elisp/literate-programming.el]]
+#+begin_src emacs-lisp
+  (load "literate-programming")
+#+end_src
 
 ** ZSH per-project configuration
   :PROPERTIES:
-  :header-args: :tangle (concat (org-entry-get nil "env-root" t) "zsh.zsh")
+  :header-args: :tangle (concat (org-entry-get nil "project-root" t) ".env/zsh.zsh")
   :END:
 
 #+BEGIN_SRC shell
