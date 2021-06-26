@@ -7,16 +7,16 @@ In Emacs press =C-c C-c= to evaluate each code block in this section.
 
 ** Emacs packages
 
-#+BEGIN_SRC elisp :results silent
-  (dolist (package '(clojure-mode cider lispy lispyville))
+#+begin_src elisp :results silent
+  (dolist (package '(clojure-mode cider lispy lispyville rainbow-delimiters))
     (unless (package-installed-p package)
       (message "~ Installing %s." package)
       (package-install package)))
-#+END_SRC
+#+end_src
 
 * Configuration
   :PROPERTIES:
-  :project-root: ~/rpm
+  :project-root: ~/rpm/
   :END:
 
 In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
@@ -27,16 +27,6 @@ In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
   :END:
 
 We want to keep environment-specific configuration out of our =~/.emacs=.
-
-https://orgmode.org/worg/org-contrib/babel/languages/index.html CLJS not supported directly
-
-The publish file is defined in [[./publishing.org][publishing.org]]. I don't like this dependency though. Maybe it'd be best to autoload any file in .env/elisp/autoload, that way we don't have this coupling.
-
-https://www.emacswiki.org/emacs/GenericMode
-
-;file-name-sans-extension
-
-https://www.emacswiki.org/emacs/LoadingLispFiles
 
 *** Path helpers for Orgmode
 
@@ -78,11 +68,15 @@ https://www.emacswiki.org/emacs/LoadingLispFiles
 
 *** Autoloaded files
 
-#+BEGIN_SRC emacs-lisp
+https://www.emacswiki.org/emacs/LoadingLispFiles
+
+This allows us to decouple for instance the [[./publishing.org::#publishing-script][publishing helper]] from the development setup file.
+
+#+begin_src emacs-lisp
   (setq elisp-autoload-dir (concat (file-name-directory (buffer-file-name)) "elisp/autoload"))
   (require 'load-directory)
   (load-directory elisp-autoload-dir)
-#+END_SRC
+#+end_src
 
 *** Rest
 
@@ -96,6 +90,12 @@ https://www.emacswiki.org/emacs/LoadingLispFiles
 #+end_src
 
 *** Orgmode source blocks
+
+Https://orgmode.org/worg/org-contrib/babel/languages/index.html CLJS not supported directly
+
+https://www.emacswiki.org/emacs/GenericMode
+
+;file-name-sans-extension
 
 #+begin_src emacs-lisp
   (org-babel-do-load-languages 'org-babel-load-languages '(
@@ -120,18 +120,25 @@ Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environme
   :header-args: :tangle (concat (org-entry-get nil "project-root" t) ".env/zsh.zsh")
   :END:
 
-#+BEGIN_SRC shell
+*** Dependencies
+
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/helpers.zsh][~/zsh/environments/helpers.zsh]]
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/basic.zsh][~/zsh/environments/basic.zsh]]
+- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/emacs.zsh][~/zsh/environments/emacs.zsh]]
+
+#+begin_src shell
   load ~/.zsh/environments/helpers.zsh && save-function-list
   load ~/.zsh/environments/basic.zsh
   load ~/.zsh/environments/emacs.zsh
+#+end_src
 
-  rename-first-tab
+*** Tangling
 
-  # Custom functions & aliases.
+We compile on save, but for the first-time compilation, we want to be able to do it from the shell, rather than having to go and save manually each file from Emacs.
 
-  # We compile on save, but for the first-time compilation,
-  # we want to be able to do it from the shell, rather than
-  # having to go and save manually each file from Emacs.
+**** TODO Use =emacs --batch '(progn ...)'=
+
+#+begin_src shell
   tangle() {
     for dir in *(/); do
       cd $dir
@@ -141,20 +148,27 @@ Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environme
       cd -
     done
   }
+#+end_src
 
+*** Run
+
+#+begin_src shell
   run() {
     clj -M -m rpm.main
   }
+#+end_src
 
+*** Test
+
+#+begin_src shell
   t() {
     clj -X:test
   }
+#+end_src
 
+*** Main
+
+#+begin_src shell
+  rename-first-tab
   report-custom-functions
-#+END_SRC
-
-*** Links
-
-- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/helpers.zsh][~/zsh/environments/helpers.zsh]]
-- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/basic.zsh][~/zsh/environments/basic.zsh]]
-- Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environments/emacs.zsh][~/zsh/environments/emacs.zsh]]
+#+end_src
