@@ -38,8 +38,10 @@ Do we want a script to wrap this? We have to rename README.html to index.html.
 
 ** CSS
 
-#+BEGIN_SRC css :tangle ../styles.css
-  * {
+#+BEGIN_SRC css :tangle ../../styles.css
+  ,* {
     font-family: Helvetica;
+    background-color: lavender;
+    color: indigo;
   }
 #+END_SRC

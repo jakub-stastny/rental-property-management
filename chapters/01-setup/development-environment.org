@@ -14,6 +14,7 @@ In Emacs press =C-c C-c= to evaluate each code block in this section.
       (package-install package)))
 #+end_src
 
+
 * Configuration
   :PROPERTIES:
   :project-root: ~/rpm/
@@ -27,6 +28,14 @@ In Emacs press =C-c C-v t= to tangle all the code blocks in this file.
   :END:
 
 We want to keep environment-specific configuration out of our =~/.emacs=.
+
+*** TODO Hook lispy, lispyville and rainbow-delimiters to .clj, .cljs and .el
+
+#+begin_src emacs-lisp
+  ;; (add-hook 'lispy-mode-hook #'lispyville-mode)
+  ;; (add-hook 'clojure-mode-hook #'lispy-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+#+end_src
 
 *** Path helpers for Orgmode
 
@@ -58,12 +67,12 @@ We want to keep environment-specific configuration out of our =~/.emacs=.
     '("#") '() '() '("^\\.gitignore$") nil
     "A mode for .gitignore files")
 
-  (define-generic-mode
-    'editorconfig-mode
-    '("#")
-    '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
-    '() '("^\\.editorconfig$") nil
-    "A mode for .editorconfig files")
+  ;; (define-generic-mode
+  ;;   'editorconfig-mode
+  ;;   '("#")
+  ;;   '("root" "end_of_line" "insert_final_newline" "charset" "indent_style" "indent_size" "trim_trailing_whitespace")
+  ;;   '() '("^\\.editorconfig$") nil
+  ;;   "A mode for .editorconfig files")
 #+end_src
 
 *** Autoloaded files
@@ -99,7 +108,7 @@ https://www.emacswiki.org/emacs/GenericMode
 
 #+begin_src emacs-lisp
   (org-babel-do-load-languages 'org-babel-load-languages '(
-    (shell . t)))
+    (shell . t) (sqlite . t)))
 
   (add-to-list 'org-src-lang-modes '("clojurescript" . "clojurescript"))
   (add-to-list 'org-src-lang-modes '("edn" . "clojure"))
@@ -136,17 +145,30 @@ Dotfiles: [[https://github.com/jakub-stastny/dotfiles/blob/master/.zsh/environme
 
 We compile on save, but for the first-time compilation, we want to be able to do it from the shell, rather than having to go and save manually each file from Emacs.
 
-**** TODO Use =emacs --batch '(progn ...)'=
+https://orgmode.org/manual/Batch-Execution.html#Batch-Execution
 
-#+begin_src shell
+#+name: tangle-files
+#+begin_src emacs-lisp :shebang "#!/usr/bin/env emacs --script"
+  (progn
+    (require 'ob-tangle)
+    (dolist (file command-line-args-left)
+      (with-current-buffer (find-file-noselect file)
+        (org-babel-tangle))))
+#+end_src
+
+#+begin_src shell :noweb yes
+  read -d '' elisp-tangle <<-EOF
+    <<tangle-files>>
+  EOF
+
   tangle() {
-    for dir in *(/); do
-      cd $dir
-      echo "(dolist (file argv) (message file) (find-file file) (org-babel-tangle))" > compile.el
-      emacs --script compile.el *.org
-      rm compile.el
-      cd -
-    done
+    if [ $# -eq 0 ];
+      # emacs -Q --batch --eval "<<tangle-files>>" chapters/**/*.org
+      $PROJECT_ROOT/.env/tangle.el chapters/**/*.org
+    else
+      # emacs -Q --batch --eval "<<tangle-files>>" "$@"
+      $PROJECT_ROOT/.env/tangle.el "$@"
+    fi
   }
 #+end_src
 
